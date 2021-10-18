@@ -35,16 +35,16 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
-                  <img src="<?= base_url() ?>assets/images/faces/face1.jpg" alt="image">
+                  <img src="<?= base_url() ?>assets/images/faces-clipart/pic-4.png" alt="image">
                   <span class="availability-status online"></span>
                 </div>
                 <div class="nav-profile-text">
-                  <p class="mb-1 text-black">David Greymaax</p>
+                  <p class="mb-1 text-black"><?= $this->session->userdata('nama') ?></p>
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="<?= base_url('Login/logout') ?>">
                   <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
               </div>
             </li>
@@ -67,19 +67,22 @@
             <li class="nav-item nav-profile">
               <a href="#" class="nav-link">
                 <div class="nav-profile-image">
-                  <img src="<?= base_url() ?>assets/images/faces/face1.jpg" alt="profile">
+                  <img src="<?= base_url() ?>assets/images/faces-clipart/pic-4.png" alt="profile">
                   <span class="login-status online"></span>
                   <!--change to offline or busy as needed-->
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
-                  <span class="font-weight-bold mb-2">David Grey. H</span>
-                  <span class="text-secondary text-small">Project Manager</span>
+                  <span class="font-weight-bold mb-2"><?= $this->session->userdata('nama') ?></span>
+                  <span class="text-secondary text-small"><?= $this->session->userdata('jabatan') ?></span>
                 </div>
                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
+            <?php 
+              if($this->session->userdata('role') == 1){
+            ?>
+            <li class="nav-item active">
+              <a class="nav-link" href="<?= base_url('Dashboard/admin') ?>">
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
@@ -92,43 +95,45 @@
               </a>
               <div class="collapse" id="admin">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="#">Anggota</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="#">Kejadian</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?= base_url('Anggota') ?>">Anggota</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?= base_url('Kejadian') ?>">Kejadian</a></li>
                 </ul>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= base_url() ?>index.html">
+              <a class="nav-link" href="<?= base_url('Ekinerja') ?>">
                 <span class="menu-title">Kelola E-Kinerja</span>
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
               </a>
             </li>
+            <?php }else if($this->session->userdata('role') == 2){?>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="<?= base_url('Dashboard/anggota') ?>">
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="<?= base_url('Kriminal') ?>">
                 <span class="menu-title">Kriminal</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="<?= base_url('Laporan/ekinerja') ?>">
                 <span class="menu-title">Laporan E-Kinerja</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
+            <?php }else if($this->session->userdata('role') == 3){?>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="<?= base_url('Dashboard/polsek') ?>">
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="<?= base_url('Ekinerja/validasiAnggota') ?>">
                 <span class="menu-title">Validasi E-Kinerja Anggota</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
@@ -141,13 +146,14 @@
               </a>
               <div class="collapse" id="polsek">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="#">Kejadian</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="#">E-Kinerja Anggota</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?= base_url('Laporan/kejadian') ?>">Kejadian</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?= base_url('Laporan/ekinerja') ?>">E-Kinerja Anggota</a></li>
                 </ul>
               </div>
             </li>
+            <?php } else if($this->session->userdata('role') == 4){ ?>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="<?= base_url('Dashboard/polres') ?>">
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
@@ -160,10 +166,11 @@
               </a>
               <div class="collapse" id="polres">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="#">Kejadian</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?= base_url('Laporan/kejadian') ?>">Kejadian</a></li>
                 </ul>
               </div>
             </li>
+            <?php }?>
           </ul>
         </nav>
         <!-- partial -->

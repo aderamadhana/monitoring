@@ -12,33 +12,56 @@
     <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-        <h4 class="card-title">Striped Table</h4>
-        <p class="card-description"> Add class <code>.table-striped</code>
-        </p>
+        <div class="float-left">
+            <h4 class="card-title">Data Anggota</h4>
+        </div>
+        
+        <div class="float-right">
+            <a href="<?= site_url('Anggota/tambah_anggota'); ?>" class="btn btn-sm btn-primary"><i class="mdi mdi-account-plus"></i> Tambah</a>
+        </div>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th> User </th>
-                <th> First name </th>
-                <th> Progress </th>
-                <th> Amount </th>
-                <th> Deadline </th>
+                <th> No </th>
+                <th> NIP </th>
+                <th> Nama Anggota </th>
+                <th> Jabatan </th>
+                <th> Anggota dari </th>
+                <th> Aksi </th>
             </tr>
             </thead>
             <tbody>
+            <?php 
+                $no = 1;
+                foreach($anggota_polsek as $d_a_polsek){
+            ?>
             <tr>
-                <td class="py-1">
-                <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" />
+                <td> <?= $no++ ?> </td>
+                <td> <?= $d_a_polsek->NIP ?> </td>
+                <td> <?= $d_a_polsek->NAMA ?> </td>
+                <td> <?= $d_a_polsek->JABATAN ?> </td>
+                <td> <?= $d_a_polsek->NAMA_POLSEK ?> </td>
+                <td> 
+                <a href="<?= site_url('Anggota/edit_anggota/'.$d_a_polsek->NIP); ?>" class="btn btn-sm btn-success"><i class="mdi mdi-grease-pencil"></i> Edit</a>
+                <a href="<?= site_url('Anggota/hapus_anggota/'.$d_a_polsek->NIP); ?>" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i> Hapus</a>
                 </td>
-                <td> Herman Beck </td>
-                <td>
-                <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                </td>
-                <td> $ 77.99 </td>
-                <td> May 15, 2015 </td>
             </tr>
+            <?php }?>
+            <?php 
+                foreach($anggota_polres as $d_a_polsek){
+            ?>
+            <tr>
+                <td> <?= $no++ ?> </td>
+                <td> <?= $d_a_polsek->NIP ?> </td>
+                <td> <?= $d_a_polsek->NAMA ?> </td>
+                <td> <?= $d_a_polsek->JABATAN ?> </td>
+                <td> <?= $d_a_polsek->NAMA_POLRES ?> </td>
+                <td> 
+                <a href="<?= site_url('Anggota/edit_anggota/'.$d_a_polsek->NIP); ?>" class="btn btn-sm btn-success"><i class="mdi mdi-grease-pencil"></i> Edit</a>
+                <a href="<?= site_url('Anggota/hapus_anggota/'.$d_a_polsek->NIP); ?>" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i> Hapus</a>
+                </td>
+            </tr>
+            <?php }?>
             </tbody>
         </table>
         </div>

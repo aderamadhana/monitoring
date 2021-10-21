@@ -4,8 +4,8 @@
     <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Master</a></li>
-        <li class="breadcrumb-item"><a href="<?= site_url('Anggota')?>">Anggota</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Edit Anggota</li>
+        <li class="breadcrumb-item"><a href="<?= site_url('User')?>">User</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit User</li>
     </ol>
     </nav>
 </div>
@@ -13,10 +13,10 @@
     <div class="col-lg-8 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Edit Anggota</h4>
+                <h4 class="card-title">Edit User</h4>
                 <small><?= $this->session->flashdata('message')?></small>
-                <form action="<?= site_url('Anggota/do_edit_anggota') ?> " method="post" enctype="multipart/form-data">
-                    <?php foreach($anggota as $data){ ?>
+                <form action="<?= site_url('User/do_edit_user') ?> " method="post" enctype="multipart/form-data">
+                    <?php foreach($user as $data){ ?>
                     <div class="form-group">
                         <label>NIP</label>
                         <input type="text" name="NIP" class="form-control" value="<?= $data->NIP ?>" readonly>
@@ -42,6 +42,10 @@
                         <input type="text" name="TELEPON" class="form-control" value="<?= $data->TELEPON ?>">
                     </div>
                     <div class="form-group">
+                        <label>Jabatan</label>
+                        <input type="text" name="JABATAN" class="form-control" value="<?= $data->JABATAN ?>" required>
+                    </div>
+                    <div class="form-group">
                         <label>Username</label>
                         <input type="text" name="USERNAME" class="form-control" value="<?= $data->USERNAME ?>" required>
                     </div>
@@ -55,32 +59,13 @@
                         <input type="file" name="FOTO" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Jenis Keanggotaan</label>
-                        <select name="JENIS_KEANGGOTAAN" id="jenis_keanggotaan" class="form-control" required>
-                            <option>--- Pilih ---</option>
-                            <option value="polsek">ANGGOTA POLSEK</option>
-                            <option value="polres">ANGGOTA POLRES</option>
-                        </select>
-                    </div>
-                    <div class="form-group" id="penempatan_polsek">
-                        <label>Penempatan</label>
-                        <select name="PENEMPATAN_POLSEK" class="form-control" required>
+                        <label>Role</label>
+                        <select name="ROLE" class="form-control" required>
                             <option>--- Pilih ---</option>
                             <?php 
-                                foreach($anggota_polsek as $data){
+                                foreach($role as $data){
                             ?>
-                            <option value="<?= $data->ID_POLSEK?>"><?= $data->NAMA_POLSEK?></option>
-                            <?php }?>
-                        </select>
-                    </div>
-                    <div class="form-group" id="penempatan_polres">
-                        <label>Penempatan</label>
-                        <select name="PENEMPATAN_POLRES" class="form-control" required>
-                            <option>--- Pilih ---</option>
-                            <?php 
-                                foreach($anggota_polres as $data){
-                            ?>
-                            <option value="<?= $data->ID_POLRES?>"><?= $data->NAMA_POLRES?></option>
+                            <option value="<?= $data->ID_ROLE?>"><?= $data->ROLE?></option>
                             <?php }?>
                         </select>
                     </div>

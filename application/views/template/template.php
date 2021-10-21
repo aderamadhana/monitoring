@@ -95,7 +95,8 @@
               </a>
               <div class="collapse" id="admin">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?= base_url('Anggota') ?>">Anggota</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?= base_url('User') ?>">User</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?= base_url('Anggota') ?>">Anggota Kepolisian</a></li>
                   <li class="nav-item"> <a class="nav-link" href="<?= base_url('Kejadian') ?>">Kejadian</a></li>
                 </ul>
               </div>
@@ -205,5 +206,27 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->
+    <script>
+    $( document ).ready(function() {
+      
+      $('#penempatan_polsek').hide();
+      $('#penempatan_polres').hide();
+
+      $('#jenis_keanggotaan').on('change', function() {
+        if(this.value == 'polsek'){
+          $('#penempatan_polsek').show();
+          $('#penempatan_polres').hide();
+        }else if(this.value == 'polres'){
+          $('#penempatan_polsek').hide();
+          $('#penempatan_polres').show();
+        }else{
+          $('#penempatan_polsek').hide();
+          $('#penempatan_polres').hide();
+        }
+      });
+    });
+    
+    
+  </script>
   </body>
 </html>

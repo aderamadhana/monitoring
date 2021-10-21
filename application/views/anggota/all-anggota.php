@@ -1,4 +1,4 @@
-
+<small><?= $this->session->flashdata('message')?></small>
 <div class="page-header">
     <h3 class="page-title"> <?= $title ?> </h3>
     <nav aria-label="breadcrumb">
@@ -43,7 +43,7 @@
                 <td> <?= $d_a_polsek->NAMA_POLSEK ?> </td>
                 <td> 
                 <a href="<?= site_url('Anggota/edit_anggota/'.$d_a_polsek->NIP); ?>" class="btn btn-sm btn-success"><i class="mdi mdi-grease-pencil"></i> Edit</a>
-                <a href="<?= site_url('Anggota/hapus_anggota/'.$d_a_polsek->NIP); ?>" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i> Hapus</a>
+                <a href="<?= site_url('Anggota/hapus_anggota/'.$d_a_polsek->NIP); ?>"  onclick="return confirm('Apakah anda yakin?')" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i> Hapus</a>
                 </td>
             </tr>
             <?php }?>
@@ -58,7 +58,7 @@
                 <td> <?= $d_a_polsek->NAMA_POLRES ?> </td>
                 <td> 
                 <a href="<?= site_url('Anggota/edit_anggota/'.$d_a_polsek->NIP); ?>" class="btn btn-sm btn-success"><i class="mdi mdi-grease-pencil"></i> Edit</a>
-                <a href="<?= site_url('Anggota/hapus_anggota/'.$d_a_polsek->NIP); ?>" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i> Hapus</a>
+                <a href="<?= site_url('Anggota/hapus_anggota/'.$d_a_polsek->NIP); ?>"  onclick="return confirm('Apakah anda yakin?')" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i> Hapus</a>
                 </td>
             </tr>
             <?php }?>

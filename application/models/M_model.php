@@ -22,4 +22,11 @@ class M_model extends CI_Model {
     public function delete_data($table_name, $condition){
         $this->db->delete($table_name, $condition);
     }
+
+    public function selectDataone($table,$where)
+		{
+
+				$query = $this->db->get_where($table,$where);
+				return $query->row_array();
+		}
 }

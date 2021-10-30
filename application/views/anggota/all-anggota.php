@@ -27,6 +27,7 @@
                 <th> Nama Anggota </th>
                 <th> Jabatan </th>
                 <th> Anggota dari </th>
+                <th> Role </th>
                 <th> Aksi </th>
             </tr>
             </thead>
@@ -34,6 +35,13 @@
             <?php 
                 $no = 1;
                 foreach($anggota_polsek as $d_a_polsek){
+                    if($d_a_polsek->ID_ROLE == 1){
+                        $role = 'Admin';
+                    }else if($d_a_polsek->ID_ROLE == 2){
+                        $role = 'Anggota';
+                    }else{
+                        $role = 'Kepala';
+                    }
             ?>
             <tr>
                 <td> <?= $no++ ?> </td>
@@ -41,6 +49,7 @@
                 <td> <?= $d_a_polsek->NAMA ?> </td>
                 <td> <?= $d_a_polsek->JABATAN ?> </td>
                 <td> <?= $d_a_polsek->NAMA_POLSEK ?> </td>
+                <td> <?= $role ?> </td>
                 <td> 
                 <a href="<?= site_url('Anggota/edit_anggota/'.$d_a_polsek->NIP); ?>" class="btn btn-sm btn-success"><i class="mdi mdi-grease-pencil"></i> Edit</a>
                 <a href="<?= site_url('Anggota/hapus_anggota/'.$d_a_polsek->NIP); ?>"  onclick="return confirm('Apakah anda yakin?')" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i> Hapus</a>
@@ -49,6 +58,13 @@
             <?php }?>
             <?php 
                 foreach($anggota_polres as $d_a_polsek){
+                    if($d_a_polsek->ID_ROLE == 1){
+                        $role = 'Admin';
+                    }else if($d_a_polsek->ID_ROLE == 2){
+                        $role = 'Anggota';
+                    }else{
+                        $role = 'Kepala';
+                    }
             ?>
             <tr>
                 <td> <?= $no++ ?> </td>
@@ -56,6 +72,7 @@
                 <td> <?= $d_a_polsek->NAMA ?> </td>
                 <td> <?= $d_a_polsek->JABATAN ?> </td>
                 <td> <?= $d_a_polsek->NAMA_POLRES ?> </td>
+                <td> <?= $role ?> </td>
                 <td> 
                 <a href="<?= site_url('Anggota/edit_anggota/'.$d_a_polsek->NIP); ?>" class="btn btn-sm btn-success"><i class="mdi mdi-grease-pencil"></i> Edit</a>
                 <a href="<?= site_url('Anggota/hapus_anggota/'.$d_a_polsek->NIP); ?>"  onclick="return confirm('Apakah anda yakin?')" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i> Hapus</a>

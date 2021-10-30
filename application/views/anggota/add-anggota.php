@@ -41,6 +41,10 @@
                         <input type="text" name="TELEPON" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label>Jabatan</label>
+                        <input type="text" name="JABATAN" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label>Username</label>
                         <input type="text" name="USERNAME" class="form-control" required>
                     </div>
@@ -51,6 +55,17 @@
                     <div class="form-group">
                         <label>Foto</label>
                         <input type="file" name="FOTO" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Role</label>
+                        <select name="ID_ROLE" class="form-control" required>
+                            <option>--- Pilih ---</option>
+                            <?php 
+                                foreach($role as $data){
+                            ?>
+                            <option value="<?= $data->ID_ROLE?>"><?= $data->ROLE?></option>
+                            <?php }?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Jenis Keanggotaan</label>

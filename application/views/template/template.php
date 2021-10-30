@@ -81,29 +81,21 @@
             <?php 
               if($this->session->userdata('role') == 1){
             ?>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="<?= base_url('Dashboard/admin') ?>">
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#admin" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-title">Master</span>
-                <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+              <a class="nav-link" href="<?= base_url('Anggota') ?>">
+                <span class="menu-title">Anggota</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
               </a>
-              <div class="collapse" id="admin">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?= base_url('User') ?>">User</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?= base_url('Anggota') ?>">Anggota Kepolisian</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?= base_url('Kejadian') ?>">Kejadian</a></li>
-                </ul>
-              </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('Ekinerja') ?>">
-                <span class="menu-title">Kelola E-Kinerja</span>
+              <a class="nav-link" href="<?= base_url('Kejadian') ?>">
+                <span class="menu-title">Kejadian</span>
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
               </a>
             </li>
@@ -115,15 +107,15 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('Kriminal') ?>">
-                <span class="menu-title">Kriminal</span>
-                <i class="mdi mdi-home menu-icon"></i>
+              <a class="nav-link" href="<?= base_url('DataKejadian') ?>">
+                <span class="menu-title">Data Kejadian</span>
+                <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('Laporan/ekinerja') ?>">
-                <span class="menu-title">Laporan E-Kinerja</span>
-                <i class="mdi mdi-home menu-icon"></i>
+              <a class="nav-link" href="<?= base_url('KegiatanBulanan') ?>">
+                <span class="menu-title">Kegiatan Bulanan</span>
+                <i class="mdi mdi-chart-areaspline menu-icon"></i>
               </a>
             </li>
             <?php }else if($this->session->userdata('role') == 3){?>
@@ -134,43 +126,18 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('Ekinerja/validasiAnggota') ?>">
-                <span class="menu-title">Validasi E-Kinerja Anggota</span>
+              <a class="nav-link" href="<?= base_url('ValidasiKejadian') ?>">
+                <span class="menu-title">Validasi Kejadian</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#polsek" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-title">Laporan</span>
-                <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-              </a>
-              <div class="collapse" id="polsek">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?= base_url('Laporan/kejadian') ?>">Kejadian</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?= base_url('Laporan/ekinerja') ?>">E-Kinerja Anggota</a></li>
-                </ul>
-              </div>
-            </li>
-            <?php } else if($this->session->userdata('role') == 4){ ?>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('Dashboard/polres') ?>">
-                <span class="menu-title">Dashboard</span>
+              <a class="nav-link" href="<?= base_url('ValidasiLaporan') ?>">
+                <span class="menu-title">Validasi Laporan</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#polres" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-title">Laporan</span>
-                <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-              </a>
-              <div class="collapse" id="polres">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?= base_url('Laporan/kejadian') ?>">Kejadian</a></li>
-                </ul>
-              </div>
-            </li>
+           
             <?php }?>
           </ul>
         </nav>

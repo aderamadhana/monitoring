@@ -19,8 +19,24 @@ class DataKejadian extends CI_Controller {
     
     public function index(){
         $data['content']            = 'data_kejadian/all-kejadian';
-        $data['title']              = 'Kejadian';
+        $data['title']              = 'Data Kejadian';
         $data['kejadian']           = $this->m_model->get_data_where('kejadian', array('NIP_PENCATAT' => $this->session->userdata('nip')));
+
+        $this->load->view('template/template', $data);
+    }
+
+    public function polsek(){
+        $data['content']            = 'data_kejadian/all-kejadian-polsek';
+        $data['title']              = 'Data Kejadian';
+        $data['kejadian']           = $this->db->select('*, COUNT(NIP_PENCATAT) AS TOTAL_KEJADIAN')->from('kejadian')->join('user', 'user.nip = kejadian.NIP_PENCATAT')->group_by('NIP_PENCATAT')->get()->result();
+
+        $this->load->view('template/template', $data);
+    }
+
+    public function detail($nip){
+        $data['content']            = 'data_kejadian/all-kejadian-polsek-detail';
+        $data['title']              = 'Data Kejadian';
+        $data['kejadian']           = $this->m_model->get_data_where('kejadian', array('NIP_PENCATAT' => $nip));
 
         $this->load->view('template/template', $data);
     }

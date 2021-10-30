@@ -11,6 +11,10 @@ class M_model extends CI_Model {
         return $this->db->get($table_name)->result();
     }
 
+    public function get_data_group_by($table_name, $group_by){
+        return $this->db->group_by($group_by)->get($table_name)->result();
+    }
+
     public function insert_data($table_name, $data){
         $this->db->insert($table_name, $data);
     }

@@ -4,7 +4,8 @@
     <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Master</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Anggota</li>
+        <li class="breadcrumb-item"><a href="<?= base_url('DataKejadian/polsek')?>">Data Kejadian</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Detail</li>
     </ol>
     </nav>
 </div>
@@ -15,16 +16,22 @@
         <div class="float-left">
             <h4 class="card-title">Data Kejadian</h4>
         </div>
-        <table class="table table-striped">
+        
+        <table class="table table-striped table-responsive">
             <thead>
             <tr>
                 <th> No </th>
                 <th> Nama Pelapor </th>
+                <th> Alamat Pelapor </th>
                 <th> Peristiwa </th>
                 <th> Nama Pelaku </th>
+                <th> Alamat Pelaku </th>
                 <th> Nama Korban </th>
+                <th> Alamat Korban </th>
+                <th> Keterangan Kejadian </th>
+                <th> Kategori Kejadian </th>
                 <th> Status Kejadian </th>
-                <th> Aksi </th>
+                <th> Tanggal Validasi </th>
             </tr>
             </thead>
             <tbody>
@@ -32,13 +39,16 @@
                 <tr>
                     <td><?= $no++?></td>
                     <td><?= $data->NAMA_PELAPOR?></td>
+                    <td><?= $data->ALAMAT_PELAPOR?></td>
                     <td><?= $data->PERISTIWA?></td>
                     <td><?= $data->NAMA_PELAKU?></td>
+                    <td><?= $data->ALAMAT_PELAKU?></td>
                     <td><?= $data->NAMA_KORBAN?></td>
+                    <td><?= $data->ALAMAT_KORBAN?></td>
+                    <td><?= $data->KETERANGAN_KEJADIAN?></td>
+                    <td><?= $data->KATEGORI_KEJADIAN?></td>
                     <td><?= $data->STATUS_KEJADIAN?></td>
-                    <td> 
-                        <a href="<?= site_url('Kejadian/detail/'.$data->ID_KEJADIAN); ?>" class="btn btn-sm btn-success"><i class="mdi mdi-grease-pencil"></i> Detail</a>
-                    </td>
+                    <td><?= $data->TANGGAL_VALIDASI?></td>
                 </tr>
                 <?php }?>
             </tbody>

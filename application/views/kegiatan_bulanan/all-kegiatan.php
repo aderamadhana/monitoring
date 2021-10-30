@@ -15,29 +15,32 @@
         <div class="float-left">
             <h4 class="card-title">Data Kejadian</h4>
         </div>
+        <div class="float-right">
+            <a href="<?= site_url('DataKejadian/tambah_kejadian'); ?>" class="btn btn-sm btn-primary"><i class="mdi mdi-account-plus"></i> Tambah</a>
+        </div>
         <table class="table table-striped">
             <thead>
             <tr>
                 <th> No </th>
-                <th> Nama Pelapor </th>
-                <th> Peristiwa </th>
-                <th> Nama Pelaku </th>
-                <th> Nama Korban </th>
-                <th> Status Kejadian </th>
+                <th> Nama Kegiatan </th>
+                <th> Deskripsi Kegiatan </th>
+                <th> Periode </th>
+                <th> Target Waktu </th>
+                <th> Status Kegiatan </th>
                 <th> Aksi </th>
             </tr>
             </thead>
             <tbody>
-                <?php $no = 1; foreach($kejadian as $data){ ?>
+                <?php $no = 1; foreach($kegiatan as $data){ ?>
                 <tr>
                     <td><?= $no++?></td>
-                    <td><?= $data->NAMA_PELAPOR?></td>
-                    <td><?= $data->PERISTIWA?></td>
-                    <td><?= $data->NAMA_PELAKU?></td>
-                    <td><?= $data->NAMA_KORBAN?></td>
-                    <td><?= $data->STATUS_KEJADIAN?></td>
+                    <td><?= $data->NAMA_KEGIATAN?></td>
+                    <td><?= $data->DESKRIPSI_KEGIATAN?></td>
+                    <td><?= $data->PERIODE_BULAN?> - <?= $data->PERIODE_TAHUN?></td>
+                    <td><?= $data->TARGET_KUANTITAS?></td>
+                    <td><?= $data->STATUS_KEGIATAN_BULANAN?></td>
                     <td> 
-                        <a href="<?= site_url('Kejadian/detail/'.$data->ID_KEJADIAN); ?>" class="btn btn-sm btn-success"><i class="mdi mdi-grease-pencil"></i> Detail</a>
+                        <a href="<?= site_url('KegiatanBulanan/detail/'.$data->ID_KEGIATAN_BULANAN); ?>" class="btn btn-sm btn-success"><i class="mdi mdi-grease-pencil"></i> Detail</a>
                     </td>
                 </tr>
                 <?php }?>

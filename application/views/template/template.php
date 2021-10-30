@@ -100,6 +100,11 @@
               </a>
             </li>
             <?php }else if($this->session->userdata('role') == 2){?>
+            <?php 
+              $nip = $this->session->userdata('nip');
+              $cek_role = $this->db->get_where('anggota_polsek', array('nip' => $nip))->result();
+              if(count($cek_role) == 0){
+            ?>
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url('Dashboard/anggota') ?>">
                 <span class="menu-title">Dashboard</span>
@@ -118,6 +123,20 @@
                 <i class="mdi mdi-chart-areaspline menu-icon"></i>
               </a>
             </li>
+            <?php }else{ ?>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('Dashboard/anggota') ?>">
+                <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('DataKejadian/polsek') ?>">
+                <span class="menu-title">Data Kejadian</span>
+                <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
+              </a>
+            </li>
+            <?php }?>
             <?php }else if($this->session->userdata('role') == 3){?>
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url('Dashboard/polsek') ?>">
@@ -125,6 +144,7 @@
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
+            
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url('ValidasiKejadian') ?>">
                 <span class="menu-title">Validasi Kejadian</span>

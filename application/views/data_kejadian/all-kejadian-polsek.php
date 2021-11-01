@@ -3,8 +3,7 @@
     <h3 class="page-title"> <?= $title ?> </h3>
     <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Master</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Data Kejadian</li>
+        <li class="breadcrumb-item active" aria-current="page">Validasi Kejadian</li>
     </ol>
     </nav>
 </div>

@@ -3,8 +3,7 @@
     <h3 class="page-title"> <?= $title ?> </h3>
     <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Master</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Anggota</li>
+        <li class="breadcrumb-item active" aria-current="page">Kejadian</li>
     </ol>
     </nav>
 </div>
@@ -37,7 +36,7 @@
                     <td><?= $data->NAMA_KORBAN?></td>
                     <td><?= $data->STATUS_KEJADIAN?></td>
                     <td> 
-                        <a href="<?= site_url('Kejadian/detail/'.$data->ID_KEJADIAN); ?>" class="btn btn-sm btn-success"><i class="mdi mdi-grease-pencil"></i> Detail</a>
+                        <a href="<?= site_url('Kejadian/detail/'.$data->ID_KEJADIAN); ?>" class="btn btn-sm btn-success"><i class="mdi mdi-eye"></i> Detail</a>
                     </td>
                 </tr>
                 <?php }?>

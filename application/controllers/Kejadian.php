@@ -27,9 +27,13 @@ class Kejadian extends CI_Controller {
 
     public function detail($id_kejadian){
         $data['content']            = 'data_kejadian/all-kejadian-detail';
-        $data['title']              = 'Data Kejadian'; 
-        $data['kejadian']           = $this->m_model->get_data_where('kejadian', array('ID_KEJADIAN' => $id_kejadian));
-        
+        $data['title']              = 'Detail Kejadian'; 
+        $data['kejadian']           = $this->m_model->selectDataone('kejadian', array('ID_KEJADIAN' => $id_kejadian));
+        $kejadian                   = $this->m_model->selectDataone('kejadian', array('ID_KEJADIAN' => $id_kejadian));
+
+        $data['nip_pencatat']       = $this->m_model->selectDataone('user', array('NIP' => $kejadian['NIP_PENCATAT']));
+        $data['nip_validator']       = $this->m_model->selectDataone('user', array('NIP' => $kejadian['NIP_VALIDATOR']));
+
         $this->load->view('template/template', $data);
     }
 }

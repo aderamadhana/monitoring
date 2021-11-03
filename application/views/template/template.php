@@ -8,6 +8,7 @@
     <!-- plugins:css -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendors/css/vendor.bundle.base.css">
+    <link href="http://localhost/kbp/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -152,8 +153,8 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('ValidasiLaporan') ?>">
-                <span class="menu-title">Validasi Laporan</span>
+              <a class="nav-link" href="<?= base_url('ValidasiKegiatan') ?>">
+                <span class="menu-title">Validasi Kegiatan</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
@@ -190,12 +191,19 @@
     <script src="<?= base_url() ?>assets/js/off-canvas.js"></script>
     <script src="<?= base_url() ?>assets/js/hoverable-collapse.js"></script>
     <script src="<?= base_url() ?>assets/js/misc.js"></script>
+    <!-- Page level plugins -->
+    <script src="http://localhost/kbp/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="http://localhost/kbp/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="http://localhost/kbp/assets/js/demo/datatables-demo.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->
     <script>
     $( document ).ready(function() {
-      
+      $('#table').DataTable();
+
       $('#penempatan_polsek').hide();
       $('#penempatan_polres').hide();
 

@@ -11,10 +11,14 @@
     <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-        <div class="float-left">
-            <h4 class="card-title">Data Kejadian</h4>
-        </div>
-        <table class="table table-striped">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="float-left">
+                    <h4 class="card-title">Data Kejadian</h4>
+                </div>
+            </div>
+        </div><br>
+        <table class="table table-striped" id="table">
             <thead>
             <tr>
                 <th> No </th>

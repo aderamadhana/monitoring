@@ -160,6 +160,27 @@
                     </table>
                 </div>
             </div>
+            <?php }else{ ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>3. Status Verifikasi</h4>
+                </div>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="<?= base_url('ValidasiKejadian/aksi_validasi')?>" method="post">
+                        <input type="hidden" class="form-control" name="id_kejadian" value="<?= $kejadian['ID_KEJADIAN']?>">
+                        <input type="hidden" class="form-control" name="id_validator" value="<?= $this->session->userdata('nip')?>">
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea class="form-control" name="catatan"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="validasi">Validasi</button>
+                        <button type="submit" class="btn btn-danger" name="tolak">Tolak</button>
+                    </form>
+                </div>
+            </div>
             <?php }?>
         </div>
     </div>

@@ -28,9 +28,8 @@ class M_model extends CI_Model {
     }
 
     public function selectDataone($table,$where)
-		{
-
-				$query = $this->db->get_where($table,$where);
-				return $query->row_array();
-		}
+    {
+        $query = $this->db->get_where($table,$where);
+        return $query->row_array();
+    }
 }

@@ -12,14 +12,19 @@
     <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-        <div class="float-left">
-            <h4 class="card-title">Data Kejadian</h4>
-        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="float-left">
+                    <h4 class="card-title">Data Kejadian</h4>
+                </div>
         
-        <div class="float-right">
-            <a href="<?= site_url('DataKejadian/tambah_kejadian'); ?>" class="btn btn-sm btn-primary"><i class="mdi mdi-account-plus"></i> Tambah</a>
-        </div>
-        <table class="table table-striped table-responsive">
+                <div class="float-right">
+                    <a href="<?= site_url('DataKejadian/tambah_kejadian'); ?>" class="btn btn-sm btn-primary"><i class="mdi mdi-account-plus"></i> Tambah</a>
+                </div>    
+            </div>
+        </div><br>
+       
+        <table class="table table-striped table-responsive" id="table">
             <thead>
             <tr>
                 <th> No </th>

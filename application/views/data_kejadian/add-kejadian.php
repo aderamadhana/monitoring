@@ -4,7 +4,7 @@
     <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Master</a></li>
-        <li class="breadcrumb-item"><a href="<?= site_url('Data Kejadian')?>">Data Kejadian</a></li>
+        <li class="breadcrumb-item"><a href="<?= site_url('DataKejadian')?>">Data Kejadian</a></li>
         <li class="breadcrumb-item active" aria-current="page">Tambah Kejadian</li>
     </ol>
     </nav>

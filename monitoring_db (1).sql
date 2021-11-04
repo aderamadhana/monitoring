@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2021 at 03:08 PM
+-- Generation Time: Nov 04, 2021 at 02:39 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -80,15 +80,17 @@ CREATE TABLE `kegiatan_bulanan` (
   `TANGGAL_INPUT_DATA` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `NIP_VALIDATOR` varchar(20) DEFAULT NULL,
   `STATUS_KEGIATAN_BULANAN` varchar(30) DEFAULT 'Belum Tervalidasi',
-  `TANGGAL_VALIDASI` timestamp NULL DEFAULT NULL
+  `TANGGAL_VALIDASI` timestamp NULL DEFAULT NULL,
+  `CATATAN` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kegiatan_bulanan`
 --
 
-INSERT INTO `kegiatan_bulanan` (`ID_KEGIATAN_BULANAN`, `NIP_PENCATAT`, `NAMA_KEGIATAN`, `DESKRIPSI_KEGIATAN`, `PERIODE_BULAN`, `PERIODE_TAHUN`, `TARGET_KUANTITAS`, `TARGET_WAKTU`, `TANGGAL_INPUT_DATA`, `NIP_VALIDATOR`, `STATUS_KEGIATAN_BULANAN`, `TANGGAL_VALIDASI`) VALUES
-(4, '126', 'Kegiatan 2', 'Kegiatan 2', 'Januari', '2021', '4', '2021-11-04', '2021-11-03 11:59:29', NULL, 'Belum Tervalidasi', NULL);
+INSERT INTO `kegiatan_bulanan` (`ID_KEGIATAN_BULANAN`, `NIP_PENCATAT`, `NAMA_KEGIATAN`, `DESKRIPSI_KEGIATAN`, `PERIODE_BULAN`, `PERIODE_TAHUN`, `TARGET_KUANTITAS`, `TARGET_WAKTU`, `TANGGAL_INPUT_DATA`, `NIP_VALIDATOR`, `STATUS_KEGIATAN_BULANAN`, `TANGGAL_VALIDASI`, `CATATAN`) VALUES
+(4, '126', 'Kegiatan 2', 'Kegiatan 2', 'Januari', '2021', '4', '2021-11-04', '2021-11-04 11:39:25', '124', 'Tervalidasi', '2021-11-04 11:39:25', ''),
+(5, '126', 'Kegiatan 1', 'Kegiatan 1', 'April', '2021', '2', '2021-11-03', '2021-11-04 11:46:31', NULL, 'Belum Tervalidasi', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -106,9 +108,20 @@ CREATE TABLE `kegiatan_harian` (
   `BUKTI` varchar(500) DEFAULT NULL,
   `TANGGAL_INPUT_DATA` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `NIP_VALIDATOR` varchar(20) DEFAULT NULL,
-  `STATUS_KEGIATAN_HARIAN` int(11) DEFAULT NULL,
-  `TANGGAL_VALIDASI` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `STATUS_KEGIATAN_HARIAN` varchar(25) DEFAULT 'Belum Tervalidasi',
+  `TANGGAL_VALIDASI` timestamp NULL DEFAULT NULL,
+  `CATATAN` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kegiatan_harian`
+--
+
+INSERT INTO `kegiatan_harian` (`ID_KEGIATAN_HARIAN`, `ID_KEGIATAN_BULANAN`, `NAMA_KEGIATAN`, `DESKRIPSI_KEGIATAN`, `TANGGAL_KEGIATAN`, `WAKTU_KEGIATAN`, `BUKTI`, `TANGGAL_INPUT_DATA`, `NIP_VALIDATOR`, `STATUS_KEGIATAN_HARIAN`, `TANGGAL_VALIDASI`, `CATATAN`) VALUES
+(129, 4, 'Kegiatan 1', 'Kegiatan 1', '2021-11-03', '21:57:00', '4.PNG', '2021-11-04 13:31:10', '124', 'Tervalidasi', '2021-11-04 13:31:10', ''),
+(130, 4, 'Kegiatan 2', 'Kegiatan 2', '2021-11-04', '22:57:00', '5.PNG', '2021-11-04 13:31:10', '124', 'Tervalidasi', '2021-11-04 13:31:10', ''),
+(131, 4, 'Kegiatan 3', 'Kegiatan 3', '2021-11-04', '19:58:00', '51.PNG', '2021-11-04 13:31:10', '124', 'Tervalidasi', '2021-11-04 13:31:10', ''),
+(132, 4, 'Kegiatan 4', 'Kegiatan 4', '2021-11-04', '22:56:00', '52.PNG', '2021-11-04 13:31:10', '124', 'Tervalidasi', '2021-11-04 13:31:10', '');
 
 -- --------------------------------------------------------
 
@@ -336,13 +349,13 @@ ALTER TABLE `anggota_polsek`
 -- AUTO_INCREMENT for table `kegiatan_bulanan`
 --
 ALTER TABLE `kegiatan_bulanan`
-  MODIFY `ID_KEGIATAN_BULANAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_KEGIATAN_BULANAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `kegiatan_harian`
 --
 ALTER TABLE `kegiatan_harian`
-  MODIFY `ID_KEGIATAN_HARIAN` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_KEGIATAN_HARIAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT for table `kejadian`

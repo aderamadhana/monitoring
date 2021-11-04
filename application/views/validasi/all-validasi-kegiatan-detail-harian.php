@@ -4,7 +4,7 @@
     <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         
-        <li class="breadcrumb-item"><a href="<?= base_url('ValidasiKegiatan/bulanan')?>">Kegiatan</a></li>
+        <li class="breadcrumb-item"><a href="<?= base_url('ValidasiKegiatan/harian')?>">Kegiatan</a></li>
         <li class="breadcrumb-item active" aria-current="page">Detail Kegiatan</li>
     </ol>
     </nav>
@@ -22,44 +22,41 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h4>1. Data Kegiatan Bulanan</h4>
+                    <h4>1. Data Kegiatan Harian</h4>
                 </div>
                 <hr>
             </div>
+            <?php foreach($kegiatan as $data){ ?>
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered">
                         <tr>
                             <th>Nama Kegiatan</th>
-                            <td><?= $kegiatan['NAMA_KEGIATAN']?></td>
+                            <td><?= $data->NAMA_KEGIATAN?></td>
                         </tr>
                         <tr>
                             <th>Deskripsi Kegiatan</th>
-                            <td><?= $kegiatan['DESKRIPSI_KEGIATAN']?></td>
+                            <td><?= $data->DESKRIPSI_KEGIATAN?></td>
                         </tr>
                         <tr>
-                            <th>Periode</th>
-                            <td><?= $kegiatan['PERIODE_BULAN']?> <?= $kegiatan['PERIODE_TAHUN']?></td>
+                            <th>Tanggal Kegiatan</th>
+                            <td><?= $data->TANGGAL_KEGIATAN?> <?= $data->WAKTU_KEGIATAN?></td>
                         </tr>
                         <tr>
-                            <th>Target Kuantitas</th>
-                            <td><?= $kegiatan['TARGET_KUANTITAS']?></td>
-                        </tr>
-                        <tr>
-                            <th>Target Waktu</th>
-                            <td><?= $kegiatan['TARGET_WAKTU']?></td>
+                            <th>Bukti</th>
+                            <td><a target="_blank" href="<?= base_url('assets/img/kegiatan/'.$data->BUKTI)?>" class="badge badge-success">Download</a></td>
                         </tr>
                     </table>
                 </div>
             </div><br>
-            
+            <?php }?>
             <?php 
-                if($kegiatan['STATUS_KEGIATAN_BULANAN'] != 'Tervalidasi'){
+                if($kegiatan_harian['STATUS_KEGIATAN_HARIAN'] != 'Tervalidasi'){
             ?>
             <div class="row">
                 <div class="col-md-12">
-                    <form action="<?= base_url('ValidasiKegiatan/aksi_validasi')?>" method="post">
-                        <input type="hidden" class="form-control" name="id_kegiatan" value="<?= $kegiatan['ID_KEGIATAN_BULANAN']?>">
+                    <form action="<?= base_url('ValidasiKegiatan/aksi_validasi_kegiatan_harian')?>" method="post">
+                        <input type="hidden" class="form-control" name="id_kegiatan" value="<?= $kegiatan_harian['ID_KEGIATAN_BULANAN']?>">
                         <input type="hidden" class="form-control" name="id_validator" value="<?= $this->session->userdata('nip')?>">
                         <div class="form-group">
                             <label>Catatan</label>

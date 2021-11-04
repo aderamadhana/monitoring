@@ -34,7 +34,7 @@
                     <td><?= $data->NAMA?></td>
                     <td><?= $data->TOTAL_KEJADIAN?></td>
                     <td> 
-                        <a href="<?= site_url('DataKejadian/detail/'.$data->NIP_PENCATAT); ?>" class="btn btn-sm btn-success"><i class="mdi mdi-grease-pencil"></i> Detail</a>
+                        <a href="<?= site_url('DataKejadian/detail/'.$data->NIP_PENCATAT); ?>" class="btn btn-sm btn-success" title="Detail Kejadian"><i class="mdi mdi-eye"></i> </a>
                     </td>
                 </tr>
                 <?php }?>

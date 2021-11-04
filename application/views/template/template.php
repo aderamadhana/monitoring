@@ -8,7 +8,7 @@
     <!-- plugins:css -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendors/css/vendor.bundle.base.css">
-    <link href="http://localhost/kbp/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -91,7 +91,7 @@
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url('Anggota') ?>">
                 <span class="menu-title">Anggota</span>
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                <i class="mdi mdi-human-child menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
@@ -148,17 +148,22 @@
             
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url('ValidasiKejadian') ?>">
-                <span class="menu-title">Validasi Kejadian</span>
-                <i class="mdi mdi-home menu-icon"></i>
+                <span class="menu-title">Kejadian</span>
+                <i class="mdi mdi-worker menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('ValidasiKegiatan') ?>">
-                <span class="menu-title">Validasi Kegiatan</span>
-                <i class="mdi mdi-home menu-icon"></i>
+              <a class="nav-link" href="<?= base_url('ValidasiKegiatan/bulanan') ?>">
+                <span class="menu-title">Kegiatan Bulanan</span>
+                <i class="mdi mdi-book-open menu-icon"></i>
               </a>
             </li>
-           
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('ValidasiKegiatan/harian') ?>">
+                <span class="menu-title">Kegiatan Harian</span>
+                <i class="mdi mdi-book-variant menu-icon"></i>
+              </a>
+            </li>
             <?php }?>
           </ul>
         </nav>
@@ -192,11 +197,11 @@
     <script src="<?= base_url() ?>assets/js/hoverable-collapse.js"></script>
     <script src="<?= base_url() ?>assets/js/misc.js"></script>
     <!-- Page level plugins -->
-    <script src="http://localhost/kbp/assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="http://localhost/kbp/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="http://localhost/kbp/assets/js/demo/datatables-demo.js"></script>
+    <script src="<?= base_url() ?>assets/js/datatables-demo.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->

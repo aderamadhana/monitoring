@@ -16,6 +16,9 @@
                 <small><?= $this->session->flashdata('message')?></small>
                 <form action="<?= site_url('KegiatanBulanan/do_tambah_kegiatan_harian') ?> " method="post" enctype="multipart/form-data">
                     <?php 
+                        $getKegiatanHarianById = $this->db->get_where('kegiatan_harian', array('ID_KEGIATAN_BULANAN' => $id_kegiatan_bulanan))->result_array();
+                        
+                        if(count($getKegiatanHarianById) == 0){
                         for ($i=1; $i <= $target_kuantitas; $i++) { 
                     ?>
                     <h4 class="card-title">Tambah Kegiatan Harian <?= $i ?></h4>
@@ -48,11 +51,49 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Bukti</label>
-                                <input type="file" name="BUKTI[]" class="form-control" required>
+                                <input type="file" name="BUKTI[]" class="form-control">
                             </div>
                         </div>
                     </div>
                     <?php }?>
+                    <?php }else{ 
+                        $i = 0;
+                        foreach($getKegiatanHarianById as $data) { $i++;?>
+                    <h4 class="card-title">Tambah Kegiatan Harian <?= $i ?></h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Nama Kegiatan</label>
+                                <input type="text" name="NAMA_KEGIATAN[]" value="<?= $data['NAMA_KEGIATAN']?>" class="form-control">
+                                <input type="hidden" name="ID_KEGIATAN_BULANAN" value="<?= $id_kegiatan_bulanan?>" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Deskripsi Kegiatan</label>
+                                <textarea name="DESKRIPSI_KEGIATAN[]" class="form-control"><?= $data['DESKRIPSI_KEGIATAN']?></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Tanggal Kegiatan</label>
+                                <input type="date" name="TANGGAL_KEGIATAN[]" value="<?= $data['TANGGAL_KEGIATAN']?>" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Waktu Kegiatan</label>
+                                <input type="time" name="WAKTU_KEGIATAN[]" value="<?= $data['WAKTU_KEGIATAN']?>" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Bukti</label>
+                                <input type="file" name="BUKTI[]" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <?php }}?>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
             </div>

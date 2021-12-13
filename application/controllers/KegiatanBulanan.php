@@ -89,13 +89,18 @@ class KegiatanBulanan extends CI_Controller {
 
     public function do_tambah_kegiatan_harian(){
 
+        $this->db->delete('kegiatan_harian', array('ID_KEGIATAN_BULANAN' => $this->input->post('ID_KEGIATAN_BULANAN')));
+
         $this->m_model->delete_data('kegiatan_harian', array('ID_KEGIATAN_BULANAN' => $this->input->post('ID_KEGIATAN_BULANAN')));
 
         $config = ['upload_path' => './assets/img/kegiatan/', 'allowed_types' => 'jpg|png|jpeg', 'max_size' => 2048];            
         $this->upload->initialize($config);
-        $count = count($_FILES['BUKTI']['name']);
-    
-        for($i=0;$i<$count;$i++){
+
+        $getKegiatanBulananById = $this->db->get_where('kegiatan_bulanan', array('ID_KEGIATAN_BULANAN' => $this->input->post('ID_KEGIATAN_BULANAN')))->row_array();
+        
+        $target_kuantitas = $getKegiatanBulananById['TARGET_KUANTITAS'];
+
+        for($i=0;$i<$target_kuantitas;$i++){
             $_FILES['file']['name'] = $_FILES['BUKTI']['name'][$i];
             $_FILES['file']['type'] = $_FILES['BUKTI']['type'][$i];
             $_FILES['file']['tmp_name'] = $_FILES['BUKTI']['tmp_name'][$i];
@@ -116,6 +121,8 @@ class KegiatanBulanan extends CI_Controller {
                 $filename = $uploadData['file_name'];
     
                 $data['totalFiles'][] = $filename;
+            }else{
+                $data['totalFiles'][] = "";
             }
         }
 

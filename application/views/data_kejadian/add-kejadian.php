@@ -16,6 +16,30 @@
                 <h4 class="card-title">Tambah Kejadian</h4>
                 <small><?= $this->session->flashdata('message')?></small>
                 <form action="<?= site_url('DataKejadian/do_tambah_kejadian') ?> " method="post" enctype="multipart/form-data">
+                    <h5>Peristiwa</h5><hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Detail Peristiwa</label>
+                                <textarea name="PERISTIWA" class="form-control" ></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Keterangan Kejadian</label>
+                                <textarea name="KETERANGAN_KEJADIAN" class="form-control" ></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Kategori Kejadian</label>
+                                <select name="KATEGORI_KEJADIAN" class="form-control" >
+                                    <option value="Kriminal">Kriminal</option>
+                                    <option value="Non Kriminal">Non Kriminal</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <h5>Data Pelapor</h5><hr>
                     <div class="row">
                         <div class="col-md-3">
@@ -121,30 +145,6 @@
                                 <select name="JENIS_KELAMIN_KORBAN" class="form-control" >
                                     <option value="Laki-Laki">Laki-Laki</option>
                                     <option value="Perempuan">Perempuan</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <h5>Peristiwa</h5><hr>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Detail Peristiwa</label>
-                                <textarea name="PERISTIWA" class="form-control" ></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Keterangan Kejadian</label>
-                                <textarea name="KETERANGAN_KEJADIAN" class="form-control" ></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Kategori Kejadian</label>
-                                <select name="KATEGORI_KEJADIAN" class="form-control" >
-                                    <option value="Kriminal">Kriminal</option>
-                                    <option value="Non Kriminal">Non Kriminal</option>
                                 </select>
                             </div>
                         </div>

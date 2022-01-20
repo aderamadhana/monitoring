@@ -44,7 +44,7 @@
                         </tr>
                         <tr>
                             <th>Bukti</th>
-                            <td><a target="_blank" href="<?= base_url('assets/img/kegiatan/'.$data->BUKTI)?>" class="badge badge-success">Download</a></td>
+                            <td><a target="_blank" href="<?= base_url('assets/img/kegiatan/'.$data->BUKTI)?>" class="badge badge-success">Lihat</a></td>
                         </tr>
                     </table>
                 </div>

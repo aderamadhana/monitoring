@@ -34,6 +34,7 @@
                 <th> Kategori Kejadian </th>
                 <th> Status Pelapor </th>
                 <th> Tanggal Validasi </th>
+                <th> Cetak </th>
             </tr>
             </thead>
             <tbody>
@@ -53,6 +54,7 @@
                     <td><?= $data->KATEGORI_KEJADIAN?></td>
                     <td><?= $data->STATUS_KEJADIAN?></td>
                     <td><?= $data->TANGGAL_VALIDASI?></td>
+                    <td><a class="btn btn-sm btn-primary" title="Cetak Detail Kejadian" href="<?= base_url('Kejadian/print/') . $data->ID_KEJADIAN; ?>"><i class="mdi mdi-printer"></i> </a></td>
                 </tr>
                 <?php }?>
             </tbody>

@@ -101,6 +101,14 @@
                 <td style="width: 50%;">Kategori Kejadian</td>
                 <td style="width: 50%;"><?= $kejadian['KATEGORI_KEJADIAN'] ?></td>
             </tr>
+            <tr>
+                <td style="width: 50%;">Tempat Kejadian</td>
+                <td style="width: 50%;"><?= $kejadian['TEMPAT_KEJADIAN'] ?></td>
+            </tr>
+            <tr>
+                <td style="width: 50%;">Waktu Kejadian</td>
+                <td style="width: 50%;"><?= $kejadian['TANGGAL_KEJADIAN'] . " : " . $kejadian['WAKTU_KEJADIAN'] ?></td>
+            </tr>
         </tbody>
     </table>
     <p>&nbsp;</p>

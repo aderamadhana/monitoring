@@ -42,6 +42,24 @@
                                 <textarea name="KETERANGAN_KEJADIAN" class="form-control" required></textarea>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Tempat Kejadian</label>
+                                <textarea name="TEMPAT_KEJADIAN" class="form-control" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Tanggal Kejadian</label>
+                                <input type="date" name="TANGGAL_KEJADIAN" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Waktu Kejadian</label>
+                                <input type="time" name="WAKTU_KEJADIAN" class="form-control" required>
+                            </div>
+                        </div>
                     </div>
                     <h5>Data Pelapor</h5><hr>
                     <div class="row">

@@ -33,7 +33,7 @@
                                 ?>
                                         <option value="<?php echo $row->PERIODE_BULAN  ?>" <?php if ($pengajuan == $row->PERIODE_BULAN) {
                                                                                                 echo "selected";
-                                                                                            }; ?>><?php echo tgl_indo($data->PERIODE_BULAN) ?></option>
+                                                                                            }; ?>><?php echo tgl_indo($row->PERIODE_BULAN) ?></option>
                                 <?php
                                     }
                                 } ?>

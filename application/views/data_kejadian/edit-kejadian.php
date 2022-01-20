@@ -16,6 +16,30 @@
                 <h4 class="card-title">Edit Kejadian</h4>
                 <small><?= $this->session->flashdata('message')?></small>
                 <form action="<?= site_url('DataKejadian/do_edit_kejadian') ?> " method="post" enctype="multipart/form-data">
+                    <h5>Peristiwa</h5><hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Kategori Kejadian</label>
+                                <select name="KATEGORI_KEJADIAN" class="form-control" >    
+                                    <option value="Kriminal" <?php if($kejadian['JENIS_KELAMIN_KORBAN'] == 'Kriminal') echo 'selected'?>>Kriminal</option>
+                                    <option value="Non Kriminal" <?php if($kejadian['JENIS_KELAMIN_KORBAN'] == 'Non Kriminal') echo 'selected'?>>Non Kriminal</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Detail Peristiwa</label>
+                                <textarea name="PERISTIWA" class="form-control" ><?= $kejadian['PERISTIWA'] ?></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Runtutan Kejadian</label>
+                                <textarea name="KETERANGAN_KEJADIAN" class="form-control" >  <?= $kejadian['KETERANGAN_KEJADIAN'] ?> </textarea>
+                            </div>
+                        </div>
+                    </div>
                     <h5>Data Pelapor</h5><hr>
                     <div class="row">
                         <div class="col-md-3">
@@ -84,6 +108,7 @@
                             <div class="form-group">
                                 <label>Jenis Kelamin Pelaku</label>
                                 <select name="JENIS_KELAMIN_PELAKU" class="form-control" >
+                                    <option value="-" <?php if($kejadian['JENIS_KELAMIN_PELAKU'] == '-') echo 'selected'?>>Pilih Jenis Kelamin</option>
                                     <option value="Laki-Laki" <?php if($kejadian['JENIS_KELAMIN_PELAKU'] == 'Laki-Laki') echo 'selected'?>>Laki-Laki</option>
                                     <option value="Perempuan" <?php if($kejadian['JENIS_KELAMIN_PELAKU'] == 'Perempuan') echo 'selected'?> >Perempuan</option>
                                 </select>
@@ -120,32 +145,46 @@
                             <div class="form-group">
                                 <label>Jenis Kelamin Korban</label>
                                 <select name="JENIS_KELAMIN_KORBAN" class="form-control" >
+                                    <option value="-" <?php if($kejadian['JENIS_KELAMIN_KORBAN'] == '-') echo 'selected'?>>Pilih Jenis Kelamin</option>
                                     <option value="Laki-Laki" <?php if($kejadian['JENIS_KELAMIN_KORBAN'] == 'Laki-Laki') echo 'selected'?>>Laki-Laki</option>
                                     <option value="Perempuan" <?php if($kejadian['JENIS_KELAMIN_KORBAN'] == 'Perempuan') echo 'selected'?> >Perempuan</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <h5>Peristiwa</h5><hr>
+                    <h5>Data Saksi</h5><hr>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <label>Detail Peristiwa</label>
-                                <textarea name="PERISTIWA" class="form-control" ><?= $kejadian['PERISTIWA'] ?></textarea>
+                                <label>Nama Saksi</label>
+                                <input type="text" name="NAMA_SAKSI" class="form-control" value="<?= $kejadian['NAMA_SAKSI'] ?>">
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <label>Keterangan Kejadian</label>
-                                <textarea name="KETERANGAN_KEJADIAN" class="form-control" >  <?= $kejadian['KETERANGAN_KEJADIAN'] ?> </textarea>
+                                <label>Tempat Lahir Saksi</label>
+                                <input type="text" name="TEMPAT_LAHIR_SAKSI" class="form-control" value="<?= $kejadian['TEMPAT_LAHIR_SAKSI'] ?>">
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <label>Kategori Kejadian</label>
-                                <select name="KATEGORI_KEJADIAN" class="form-control" >    
-                                    <option value="Kriminal" <?php if($kejadian['JENIS_KELAMIN_KORBAN'] == 'Kriminal') echo 'selected'?>>Kriminal</option>
-                                    <option value="Non Kriminal" <?php if($kejadian['JENIS_KELAMIN_KORBAN'] == 'Non Kriminal') echo 'selected'?>>Non Kriminal</option>
+                                <label>Tanggal Lahir Saksi</label>
+                                <input type="date" name="TANGGAL_LAHIR_SAKSI" class="form-control" value="<?= $kejadian['TANGGAL_LAHIR_SAKSI'] ?>">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Alamat Saksi</label>
+                                <input type="text" name="ALAMAT_SAKSI" class="form-control" value="<?= $kejadian['ALAMAT_SAKSI'] ?>">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Jenis Kelamin Saksi</label>
+                                <select name="JENIS_KELAMIN_SAKSI" class="form-control" >
+                                    <option value="-" <?php if($kejadian['JENIS_KELAMIN_SAKSI'] == '-') echo 'selected'?>>Pilih Jenis Kelamin</option>
+                                    <option value="Laki-Laki" <?php if($kejadian['JENIS_KELAMIN_SAKSI'] == 'Laki-Laki') echo 'selected'?>>Laki-Laki</option>
+                                    <option value="Perempuan" <?php if($kejadian['JENIS_KELAMIN_SAKSI'] == 'Perempuan') echo 'selected'?> >Perempuan</option>
                                 </select>
                             </div>
                         </div>

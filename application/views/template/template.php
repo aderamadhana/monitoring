@@ -22,10 +22,10 @@
   <body>
     <div class="container-scroller">
       <!-- partial:<?= base_url() ?>partials/_navbar.html -->
-      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo" href="<?= base_url() ?>index.html"><img src="<?= base_url() ?>assets/images/logo.svg" alt="logo" /></a>
-          <a class="navbar-brand brand-logo-mini" href="<?= base_url() ?>index.html"><img src="<?= base_url() ?>assets/images/logo-mini.svg" alt="logo" /></a>
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background: #ffc500;">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center" style="background: #ffc500;">
+          <a class="navbar-brand brand-logo" href="<?= base_url() ?>index.html" >E-KINERJA</a>
+          <a class="navbar-brand brand-logo-mini" href="<?= base_url() ?>index.html"><img src="<?= base_url() ?>assets/images/lambang_polri.png" alt="logo" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -63,7 +63,7 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:<?= base_url() ?>partials/_sidebar.html -->
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background: #8b8b8b;">
           <ul class="nav">
             <li class="nav-item nav-profile">
               <a href="#" class="nav-link">
@@ -107,6 +107,19 @@
               if(count($cek_role) == 0){
             ?>
             <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('Dashboard/polres') ?>">
+                <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('DataKejadian/polsek') ?>">
+                <span class="menu-title">Data Kejadian</span>
+                <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
+              </a>
+            </li>
+            <?php }else{ ?>
+            <li class="nav-item">
               <a class="nav-link" href="<?= base_url('Dashboard/anggota') ?>">
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-home menu-icon"></i>
@@ -124,17 +137,10 @@
                 <i class="mdi mdi-chart-areaspline menu-icon"></i>
               </a>
             </li>
-            <?php }else{ ?>
             <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('Dashboard/anggota') ?>">
-                <span class="menu-title">Dashboard</span>
-                <i class="mdi mdi-home menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('DataKejadian/polsek') ?>">
-                <span class="menu-title">Data Kejadian</span>
-                <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
+              <a class="nav-link" href="<?= base_url('Poin') ?>">
+                <span class="menu-title">Poin</span>
+                <i class="mdi mdi-coin menu-icon"></i>
               </a>
             </li>
             <?php }?>
@@ -145,7 +151,6 @@
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
-            
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url('ValidasiKejadian') ?>">
                 <span class="menu-title">Kejadian</span>

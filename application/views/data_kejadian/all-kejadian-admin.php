@@ -26,7 +26,8 @@
                 <th> Peristiwa </th>
                 <th> Nama Pelaku </th>
                 <th> Nama Korban </th>
-                <th> Status Kejadian </th>
+                <th> Nama Saksi </th>
+                <th> Status Pelapor </th>
                 <th> Aksi </th>
             </tr>
             </thead>
@@ -38,6 +39,7 @@
                     <td><?= $data->PERISTIWA?></td>
                     <td><?= $data->NAMA_PELAKU?></td>
                     <td><?= $data->NAMA_KORBAN?></td>
+                    <td><?= $data->NAMA_SAKSI?></td>
                     <td><?= $data->STATUS_KEJADIAN?></td>
                     <td> 
                         <a href="<?= site_url('Kejadian/detail/'.$data->ID_KEJADIAN); ?>" class="btn btn-sm btn-success"><i class="mdi mdi-eye"></i> Detail</a>

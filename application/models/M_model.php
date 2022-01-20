@@ -6,6 +6,18 @@ class M_model extends CI_Model {
     public function get_data_where($table_name, $condition){
         return $this->db->get_where($table_name, $condition)->result();
     }
+
+    public function get_data_where_count($table_name, $condition){
+        return $this->db->get_where($table_name, $condition)->num_rows();
+    }
+
+    public function get_data_where_group_by($table_name, $condition, $group_by){
+        return $this->db->group_by($group_by)->get_where($table_name, $condition)->result();
+    }
+
+    public function get_data_where_group_by_order_by($table_name, $condition, $group_by){
+        return $this->db->order_by("PERIODE_TAHUN ASC", "PERIODE_BULAN ASC")->group_by($group_by)->get_where($table_name, $condition)->result();
+    }
     
     public function get_data_all($table_name){
         return $this->db->get($table_name)->result();

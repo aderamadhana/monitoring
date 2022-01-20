@@ -28,9 +28,11 @@
                 <th> Alamat Pelaku </th>
                 <th> Nama Korban </th>
                 <th> Alamat Korban </th>
-                <th> Keterangan Kejadian </th>
+                <th> Nama Saksi </th>
+                <th> Alamat Saksi </th>
+                <th> Runtutan Kejadian </th>
                 <th> Kategori Kejadian </th>
-                <th> Status Kejadian </th>
+                <th> Status Pelapor </th>
                 <th> Tanggal Validasi </th>
             </tr>
             </thead>
@@ -45,6 +47,8 @@
                     <td><?= $data->ALAMAT_PELAKU?></td>
                     <td><?= $data->NAMA_KORBAN?></td>
                     <td><?= $data->ALAMAT_KORBAN?></td>
+                    <td><?= $data->NAMA_SAKSI?></td>
+                    <td><?= $data->ALAMAT_SAKSI?></td>
                     <td><?= $data->KETERANGAN_KEJADIAN?></td>
                     <td><?= $data->KATEGORI_KEJADIAN?></td>
                     <td><?= $data->STATUS_KEJADIAN?></td>

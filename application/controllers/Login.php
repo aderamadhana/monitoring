@@ -44,15 +44,18 @@ class Login extends CI_Controller {
 		$this->session->set_userdata($data_session);
 
 		if($dataLogin != null){
-			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil Login </div>');
+			$this->session->set_flashdata('message', '');
 			if($role == 1){
 				redirect('Dashboard/admin');
 			}else if($role == 2){
-				redirect('Dashboard/anggota');
+				$cek_role = $this->db->get_where('anggota_polsek', array('nip' => $nip))->result();
+				if(count($cek_role) == 0){
+					redirect('Dashboard/polres');
+				} else {
+					redirect('Dashboard/anggota');
+				}
 			}else if($role == 3){
 				redirect('Dashboard/polsek');
-			}else if($role == 4){
-				redirect('Dashboard/polres');
 			}
 		}else{
 			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Username/ Password Salah! </div>');

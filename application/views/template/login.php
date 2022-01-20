@@ -26,12 +26,12 @@
           <div class="row flex-grow">
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left p-5">
-                <div class="brand-logo">
-                  <img src="<?= base_url() ?>assets/images/logo.svg">
+                <div class="brand-logo" style="text-align: center;">
+                  <img src="<?= base_url() ?>assets/images/lambang_polri.png">
                 </div>
                 <small><?= $this->session->flashdata('message')?></small>
-                <h4>Hello! let's get started</h4>
-                <h6 class="font-weight-light">Sign in to continue.</h6>
+                <h4 style="text-align: center;">E-KINERJA</h4>
+                <!-- <h6 class="font-weight-light">Sign in to continue.</h6> -->
                 <form class="pt-3" action="<?php echo base_url('Login/aksi_login')?>" method="post">
                   <div class="form-group">
                     <input type="text" name="username" class="form-control form-control-lg" placeholder="Username">
@@ -40,7 +40,7 @@
                     <input type="password" name="password" class="form-control form-control-lg" placeholder="Password">
                   </div>
                   <div class="mt-3">
-                    <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
+                    <button type="submit" class="btn btn-block btn-gradient-warning btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
                   </div>
                   
                 </form>

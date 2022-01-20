@@ -26,7 +26,7 @@
                 <th> Peristiwa </th>
                 <th> Nama Pelaku </th>
                 <th> Nama Korban </th>
-                <th> Status Kejadian </th>
+                <th> Status Pelapor </th>
                 <th> Aksi </th>
             </tr>
             </thead>

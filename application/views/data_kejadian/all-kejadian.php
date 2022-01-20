@@ -35,9 +35,11 @@
                 <th> Alamat Pelaku </th>
                 <th> Nama Korban </th>
                 <th> Alamat Korban </th>
-                <th> Keterangan Kejadian </th>
+                <th> Nama Saksi </th>
+                <th> Alamat Saksi </th>
+                <th> Runtutan Kejadian </th>
                 <th> Kategori Kejadian </th>
-                <th> Status Kejadian </th>
+                <th> Status Pelapor </th>
                 <th> Tanggal Validasi </th>
                 <th> Aksi </th>
             </tr>
@@ -53,14 +55,28 @@
                     <td><?= $data->ALAMAT_PELAKU?></td>
                     <td><?= $data->NAMA_KORBAN?></td>
                     <td><?= $data->ALAMAT_KORBAN?></td>
+                    <td><?= $data->NAMA_SAKSI?></td>
+                    <td><?= $data->ALAMAT_SAKSI?></td>
                     <td><?= $data->KETERANGAN_KEJADIAN?></td>
                     <td><?= $data->KATEGORI_KEJADIAN?></td>
                     <td><?= $data->STATUS_KEJADIAN?></td>
                     <td><?= $data->TANGGAL_VALIDASI?></td>
+                    <?php 
+                        if ($data->STATUS_KEJADIAN == 'Belum Tervalidasi') {
+                    ?>
                     <td> 
-                        <a href="<?= site_url('DataKejadian/edit_kejadian/'.$data->ID_KEJADIAN); ?>" class="btn btn-sm btn-success"><i class="mdi mdi-grease-pencil"></i> Edit</a>
+                        <a href="<?= site_url('DataKejadian/edit_kejadian/'.$data->ID_KEJADIAN); ?>" class="btn btn-sm btn-warning"><i class="mdi mdi-grease-pencil"></i> Edit</a>
                         <a href="<?= site_url('DataKejadian/hapus_kejadian/'.$data->ID_KEJADIAN); ?>"  onclick="return confirm('Apakah anda yakin?')" class="btn btn-sm btn-danger"><i class="mdi mdi-delete"></i> Hapus</a>
                     </td>
+                    <?php
+                        } else {
+                    ?>
+                    <td> 
+                        <a href="<?= site_url('DataKejadian/detail_kejadian/'.$data->ID_KEJADIAN); ?>" class="btn btn-sm btn-success" title="Detail Kejadian"><i class="mdi mdi-eye"></i> </a>
+                    </td>
+                    <?php
+                        }
+                    ?>
                 </tr>
                 <?php }?>
             </tbody>

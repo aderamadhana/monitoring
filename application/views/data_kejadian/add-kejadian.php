@@ -16,20 +16,8 @@
                 <h4 class="card-title">Tambah Kejadian</h4>
                 <small><?= $this->session->flashdata('message')?></small>
                 <form action="<?= site_url('DataKejadian/do_tambah_kejadian') ?> " method="post" enctype="multipart/form-data">
-                    <h5>Peristiwa</h5><hr>
+                    <h5>Kategori Kejadian</h5><hr>
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Detail Peristiwa</label>
-                                <textarea name="PERISTIWA" class="form-control" ></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Keterangan Kejadian</label>
-                                <textarea name="KETERANGAN_KEJADIAN" class="form-control" ></textarea>
-                            </div>
-                        </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Kategori Kejadian</label>
@@ -40,31 +28,46 @@
                             </div>
                         </div>
                     </div>
+                    <h5>Peristiwa</h5><hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Detail Peristiwa</label>
+                                <textarea name="PERISTIWA" class="form-control" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Runtutan Kejadian</label>
+                                <textarea name="KETERANGAN_KEJADIAN" class="form-control" required></textarea>
+                            </div>
+                        </div>
+                    </div>
                     <h5>Data Pelapor</h5><hr>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Nama Pelapor</label>
                                 <input type="hidden" name="NIP_PENCATAT" value="<?= $this->session->userdata('nip')?>" class="form-control" >
-                                <input type="text" name="NAMA_PELAPOR" class="form-control" >
+                                <input type="text" name="NAMA_PELAPOR" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Tempat Lahir Pelapor</label>
-                                <input type="text" name="TEMPAT_LAHIR_PELAPOR" class="form-control" >
+                                <input type="text" name="TEMPAT_LAHIR_PELAPOR" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Tanggal Lahir Pelapor</label>
-                                <input type="date" name="TANGGAL_LAHIR_PELAPOR" class="form-control" >
+                                <input type="date" name="TANGGAL_LAHIR_PELAPOR" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Alamat Pelapor</label>
-                                <input type="text" name="ALAMAT_PELAPOR" class="form-control" >
+                                <input type="text" name="ALAMAT_PELAPOR" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -107,6 +110,7 @@
                             <div class="form-group">
                                 <label>Jenis Kelamin Pelaku</label>
                                 <select name="JENIS_KELAMIN_PELAKU" class="form-control" >
+                                    <option value="-">Pilih Jenis Kelamin</option>
                                     <option value="Laki-Laki">Laki-Laki</option>
                                     <option value="Perempuan">Perempuan</option>
                                 </select>
@@ -143,6 +147,44 @@
                             <div class="form-group">
                                 <label>Jenis Kelamin Korban</label>
                                 <select name="JENIS_KELAMIN_KORBAN" class="form-control" >
+                                    <option value="-">Pilih Jenis Kelamin</option>
+                                    <option value="Laki-Laki">Laki-Laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <h5>Data Saksi</h5><hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Nama Saksi</label>
+                                <input type="text" name="NAMA_SAKSI" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Tempat Lahir Saksi</label>
+                                <input type="text" name="TEMPAT_LAHIR_SAKSI" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Tanggal Lahir Saksi</label>
+                                <input type="date" name="TANGGAL_LAHIR_SAKSI" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Alamat Saksi</label>
+                                <input type="text" name="ALAMAT_SAKSI" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Jenis Kelamin Saksi</label>
+                                <select name="JENIS_KELAMIN_SAKSI" class="form-control" >
+                                    <option value="-">Pilih Jenis Kelamin</option>
                                     <option value="Laki-Laki">Laki-Laki</option>
                                     <option value="Perempuan">Perempuan</option>
                                 </select>

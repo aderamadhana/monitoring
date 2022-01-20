@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2021 at 02:39 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.9
+-- Generation Time: Jan 20, 2022 at 03:21 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -76,6 +76,7 @@ CREATE TABLE `kegiatan_bulanan` (
   `PERIODE_BULAN` varchar(25) DEFAULT NULL,
   `PERIODE_TAHUN` varchar(5) DEFAULT NULL,
   `TARGET_KUANTITAS` varchar(3) DEFAULT NULL,
+  `TARGET_TEREALISASI` int(11) NOT NULL DEFAULT 0,
   `TARGET_WAKTU` date DEFAULT NULL,
   `TANGGAL_INPUT_DATA` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `NIP_VALIDATOR` varchar(20) DEFAULT NULL,
@@ -88,9 +89,10 @@ CREATE TABLE `kegiatan_bulanan` (
 -- Dumping data for table `kegiatan_bulanan`
 --
 
-INSERT INTO `kegiatan_bulanan` (`ID_KEGIATAN_BULANAN`, `NIP_PENCATAT`, `NAMA_KEGIATAN`, `DESKRIPSI_KEGIATAN`, `PERIODE_BULAN`, `PERIODE_TAHUN`, `TARGET_KUANTITAS`, `TARGET_WAKTU`, `TANGGAL_INPUT_DATA`, `NIP_VALIDATOR`, `STATUS_KEGIATAN_BULANAN`, `TANGGAL_VALIDASI`, `CATATAN`) VALUES
-(4, '126', 'Kegiatan 2', 'Kegiatan 2', 'Januari', '2021', '4', '2021-11-04', '2021-11-04 11:39:25', '124', 'Tervalidasi', '2021-11-04 11:39:25', ''),
-(5, '126', 'Kegiatan 1', 'Kegiatan 1', 'April', '2021', '2', '2021-11-03', '2021-11-04 11:46:31', NULL, 'Belum Tervalidasi', NULL, NULL);
+INSERT INTO `kegiatan_bulanan` (`ID_KEGIATAN_BULANAN`, `NIP_PENCATAT`, `NAMA_KEGIATAN`, `DESKRIPSI_KEGIATAN`, `PERIODE_BULAN`, `PERIODE_TAHUN`, `TARGET_KUANTITAS`, `TARGET_TEREALISASI`, `TARGET_WAKTU`, `TANGGAL_INPUT_DATA`, `NIP_VALIDATOR`, `STATUS_KEGIATAN_BULANAN`, `TANGGAL_VALIDASI`, `CATATAN`) VALUES
+(4, '125', 'Kegiatan 2', 'Kegiatan 2', '1', '2021', '4', 0, '2021-11-04', '2022-01-15 18:17:17', '124', 'Tervalidasi', '2021-11-04 11:39:25', ''),
+(5, '125', 'Kegiatan 1', 'Kegiatan 1', '4', '2021', '2', 0, '2021-11-03', '2022-01-19 07:49:39', NULL, 'Tertolak', NULL, ''),
+(6, '125', 'Mabar', 'Mabar bersama', '12', '2022', '5', 0, '2022-01-21', '2022-01-15 18:23:17', NULL, 'Belum Tervalidasi', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -123,6 +125,18 @@ INSERT INTO `kegiatan_harian` (`ID_KEGIATAN_HARIAN`, `ID_KEGIATAN_BULANAN`, `NAM
 (131, 4, 'Kegiatan 3', 'Kegiatan 3', '2021-11-04', '19:58:00', '51.PNG', '2021-11-04 13:31:10', '124', 'Tervalidasi', '2021-11-04 13:31:10', ''),
 (132, 4, 'Kegiatan 4', 'Kegiatan 4', '2021-11-04', '22:56:00', '52.PNG', '2021-11-04 13:31:10', '124', 'Tervalidasi', '2021-11-04 13:31:10', '');
 
+--
+-- Triggers `kegiatan_harian`
+--
+DELIMITER $$
+CREATE TRIGGER `DELETE_DATA` AFTER DELETE ON `kegiatan_harian` FOR EACH ROW UPDATE kegiatan_bulanan SET kegiatan_bulanan.TARGET_TEREALISASI = kegiatan_bulanan.TARGET_TEREALISASI - 1 WHERE kegiatan_bulanan.ID_KEGIATAN_BULANAN = old.ID_KEGIATAN_BULANAN
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `INSERT_DATA` AFTER INSERT ON `kegiatan_harian` FOR EACH ROW UPDATE kegiatan_bulanan SET kegiatan_bulanan.TARGET_TEREALISASI = kegiatan_bulanan.TARGET_TEREALISASI + 1 WHERE kegiatan_bulanan.ID_KEGIATAN_BULANAN = new.ID_KEGIATAN_BULANAN
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -139,16 +153,21 @@ CREATE TABLE `kejadian` (
   `ALAMAT_PELAPOR` varchar(150) DEFAULT NULL,
   `JENIS_KELAMIN_PELAPOR` varchar(100) DEFAULT NULL,
   `PERISTIWA` varchar(500) DEFAULT NULL,
-  `NAMA_PELAKU` varchar(100) DEFAULT NULL,
-  `TEMPAT_LAHIR_PELAKU` varchar(50) DEFAULT NULL,
+  `NAMA_PELAKU` varchar(100) DEFAULT '-',
+  `TEMPAT_LAHIR_PELAKU` varchar(50) DEFAULT '-',
   `TANGGAL_LAHIR_PELAKU` date DEFAULT NULL,
-  `ALAMAT_PELAKU` varchar(150) DEFAULT NULL,
-  `JENIS_KELAMIN_PELAKU` varchar(100) DEFAULT NULL,
-  `NAMA_KORBAN` varchar(100) DEFAULT NULL,
-  `TEMPAT_LAHIR_KORBAN` varchar(50) DEFAULT NULL,
+  `ALAMAT_PELAKU` varchar(150) DEFAULT '-',
+  `JENIS_KELAMIN_PELAKU` varchar(100) DEFAULT '-',
+  `NAMA_KORBAN` varchar(100) DEFAULT '-',
+  `TEMPAT_LAHIR_KORBAN` varchar(50) DEFAULT '-',
   `TANGGAL_LAHIR_KORBAN` date DEFAULT NULL,
-  `ALAMAT_KORBAN` varchar(150) DEFAULT NULL,
-  `JENIS_KELAMIN_KORBAN` varchar(100) DEFAULT NULL,
+  `ALAMAT_KORBAN` varchar(150) DEFAULT '-',
+  `JENIS_KELAMIN_KORBAN` varchar(100) DEFAULT '-',
+  `NAMA_SAKSI` varchar(100) NOT NULL DEFAULT '-',
+  `TEMPAT_LAHIR_SAKSI` varchar(50) NOT NULL DEFAULT '-',
+  `TANGGAL_LAHIR_SAKSI` date DEFAULT NULL,
+  `ALAMAT_SAKSI` varchar(150) NOT NULL DEFAULT '-',
+  `JENIS_KELAMIN_SAKSI` varchar(100) NOT NULL DEFAULT '-',
   `KETERANGAN_KEJADIAN` varchar(500) DEFAULT NULL,
   `KATEGORI_KEJADIAN` varchar(100) DEFAULT NULL,
   `TANGGAL_INPUT_DATA` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -161,10 +180,14 @@ CREATE TABLE `kejadian` (
 -- Dumping data for table `kejadian`
 --
 
-INSERT INTO `kejadian` (`ID_KEJADIAN`, `NIP_PENCATAT`, `NIP_VALIDATOR`, `NAMA_PELAPOR`, `TEMPAT_LAHIR_PELAPOR`, `TANGGAL_LAHIR_PELAPOR`, `ALAMAT_PELAPOR`, `JENIS_KELAMIN_PELAPOR`, `PERISTIWA`, `NAMA_PELAKU`, `TEMPAT_LAHIR_PELAKU`, `TANGGAL_LAHIR_PELAKU`, `ALAMAT_PELAKU`, `JENIS_KELAMIN_PELAKU`, `NAMA_KORBAN`, `TEMPAT_LAHIR_KORBAN`, `TANGGAL_LAHIR_KORBAN`, `ALAMAT_KORBAN`, `JENIS_KELAMIN_KORBAN`, `KETERANGAN_KEJADIAN`, `KATEGORI_KEJADIAN`, `TANGGAL_INPUT_DATA`, `STATUS_KEJADIAN`, `TANGGAL_VALIDASI`, `CATATAN`) VALUES
-(5, '126', '124', 'Anggota Polres 1', 'Malang', '2021-10-12', 'jalan cakalang no 712 c', 'Laki-Laki', 'Menyontek saat ujian', 'Samsul', 'Malang', '2021-10-30', 'jalan cakalang no 712 c', 'Laki-Laki', 'Siti', 'Malang', '2021-10-30', 'jalan cakalang no 712 c', 'Perempuan', 'Menyontek saat ujian', 'Non Kriminal', '2021-11-02 03:28:46', 'Tervalidasi', '2021-11-01 17:00:00', ''),
-(6, '126', '124', 'Anggota Polres 1', 'Malang', '2021-10-29', 'jalan cakalang no 712 c', 'Laki-Laki', 'Menyontek saat ujian', 'Bambang', 'Malang', '2021-10-30', 'jalan cakalang no 712 c', 'Laki-Laki', 'Udin', 'Malang', '2021-10-30', 'jalan cakalang no 712 c', 'Laki-Laki', 'Menyontek saat ujian', 'Kriminal', '2021-11-02 03:28:55', 'Tervalidasi', '2021-11-01 17:00:00', ''),
-(7, '1112', NULL, 'Anggota Polres 2', 'Malang', '2021-10-30', 'jalan cakalang no 712 c', 'Laki-Laki', 'Menyontek tok pokok', 'Mai', 'Malang', '2021-10-28', 'jalan cakalang no 712 c', 'Perempuan', 'Mas', 'Malang', '2021-10-30', 'jalan cakalang no 712 c', 'Perempuan', 'Menyontek tok pokok', 'Kriminal', '2021-11-02 03:28:51', 'Tertolak', NULL, '');
+INSERT INTO `kejadian` (`ID_KEJADIAN`, `NIP_PENCATAT`, `NIP_VALIDATOR`, `NAMA_PELAPOR`, `TEMPAT_LAHIR_PELAPOR`, `TANGGAL_LAHIR_PELAPOR`, `ALAMAT_PELAPOR`, `JENIS_KELAMIN_PELAPOR`, `PERISTIWA`, `NAMA_PELAKU`, `TEMPAT_LAHIR_PELAKU`, `TANGGAL_LAHIR_PELAKU`, `ALAMAT_PELAKU`, `JENIS_KELAMIN_PELAKU`, `NAMA_KORBAN`, `TEMPAT_LAHIR_KORBAN`, `TANGGAL_LAHIR_KORBAN`, `ALAMAT_KORBAN`, `JENIS_KELAMIN_KORBAN`, `NAMA_SAKSI`, `TEMPAT_LAHIR_SAKSI`, `TANGGAL_LAHIR_SAKSI`, `ALAMAT_SAKSI`, `JENIS_KELAMIN_SAKSI`, `KETERANGAN_KEJADIAN`, `KATEGORI_KEJADIAN`, `TANGGAL_INPUT_DATA`, `STATUS_KEJADIAN`, `TANGGAL_VALIDASI`, `CATATAN`) VALUES
+(5, '125', '124', 'Anggota Polres 1', 'Malang', '2021-10-12', 'jalan cakalang no 712 c', 'Laki-Laki', 'Menyontek saat ujian', 'Samsul', 'Malang', '2021-10-30', 'jalan cakalang no 712 c', 'Laki-Laki', 'Siti', 'Malang', '2021-10-30', 'jalan cakalang no 712 c', 'Perempuan', '-', '-', NULL, '-', '-', 'Menyontek saat ujian', 'Non Kriminal', '2022-01-19 18:22:05', 'Tervalidasi', '2021-11-01 17:00:00', ''),
+(6, '126', '124', 'Anggota Polres 1', 'Malang', '2021-10-29', 'jalan cakalang no 712 c', 'Laki-Laki', 'Menyontek saat ujian', 'Bambang', 'Malang', '2021-10-30', 'jalan cakalang no 712 c', 'Laki-Laki', 'Udin', 'Malang', '2021-10-30', 'jalan cakalang no 712 c', 'Laki-Laki', '-', '-', NULL, '-', '-', 'Menyontek saat ujian', 'Kriminal', '2021-11-02 03:28:55', 'Tervalidasi', '2021-11-01 17:00:00', ''),
+(7, '1112', NULL, 'Anggota Polres 2', 'Malang', '2021-10-30', 'jalan cakalang no 712 c', 'Laki-Laki', 'Menyontek tok pokok', 'Mai', 'Malang', '2021-10-28', 'jalan cakalang no 712 c', 'Perempuan', 'Mas', 'Malang', '2021-10-30', 'jalan cakalang no 712 c', 'Perempuan', '-', '-', NULL, '-', '-', 'Menyontek tok pokok', 'Kriminal', '2021-11-02 03:28:51', 'Tertolak', NULL, ''),
+(9, '125', '124', 'Aku', 'Bumi', '2022-01-15', 'Bumi 2', 'Laki-Laki', 'Peristiwa', 'Kamu', 'Bumi 3', '2022-01-17', 'Bumi 4', 'Perempuan', 'Mereka', 'Bumi 5', '2022-01-18', 'Bumi 6', 'Laki-Laki', '-', '-', NULL, '-', '-', 'Keterangan Kejadian', 'Kriminal', '2022-01-14 17:16:57', 'Tervalidasi', '2022-01-14 17:16:57', 'Mantap'),
+(10, '125', NULL, 'a', 'a', '2022-01-15', 'a', 'Laki-Laki', 'a', 'a', 'a', '2022-01-15', 'a', 'Laki-Laki', 'a', 'a', '2022-01-15', 'a', 'Laki-Laki', '-', '-', NULL, '-', '-', 'a', 'Kriminal', '2022-01-14 17:25:46', 'Belum Tervalidasi', NULL, NULL),
+(11, '125', NULL, '', '', '0000-00-00', '', 'Laki-Laki', 'Abc 123', '', '', '0000-00-00', '', '-', '', '', '0000-00-00', '', '-', '-', '-', NULL, '-', '-', '123 Abc', 'Non Kriminal', '2022-01-18 16:25:43', 'Belum Tervalidasi', NULL, NULL),
+(12, '125', NULL, '123', '123', '2022-01-19', '123', 'Laki-Laki', '123', '', '', '0000-00-00', '', '-', '', '', '0000-00-00', '', '-', '456', '456', '2022-01-19', '456', 'Laki-Laki', '123', 'Kriminal', '2022-01-18 17:12:18', 'Belum Tervalidasi', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -349,19 +372,19 @@ ALTER TABLE `anggota_polsek`
 -- AUTO_INCREMENT for table `kegiatan_bulanan`
 --
 ALTER TABLE `kegiatan_bulanan`
-  MODIFY `ID_KEGIATAN_BULANAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_KEGIATAN_BULANAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `kegiatan_harian`
 --
 ALTER TABLE `kegiatan_harian`
-  MODIFY `ID_KEGIATAN_HARIAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `ID_KEGIATAN_HARIAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `kejadian`
 --
 ALTER TABLE `kejadian`
-  MODIFY `ID_KEJADIAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_KEJADIAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `polres`

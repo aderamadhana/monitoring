@@ -7,6 +7,7 @@ class Dashboard extends CI_Controller {
         parent::__construct();
         date_default_timezone_set('Asia/Jakarta');
         $this->load->model('m_model');
+        $this->load->model('m_user');
         
         // if($this->session->userdata('role') != 1){
         //     $this->session->set_flashdata('messages', '<br><div class="alert alert-danger" role="alert"> <strong> Error! </strong>Silahkan login terlebih dahulu </div>');
@@ -35,12 +36,16 @@ class Dashboard extends CI_Controller {
         $data['content']    = 'dashboard/all-dashboard-polsek';
         $data['title']      = 'Dashboard';
 
+        $data['user'] = $this->m_user->get_user_by_kapolsek($this->session->userdata('nip'));
+
         $this->load->view('template/template', $data);
     }
 
     public function polres(){
         $data['content']                = 'dashboard/all-dashboard-polres';
         $data['title']                  = 'Dashboard';
+        
+        $data['polsek']                 = $this->m_model->get_data_all('polsek');
         $data['kejadianKriminal']       = $this->m_model->get_data_where_count('kejadian', array('KATEGORI_KEJADIAN' => "Kriminal"));
         $data['kejadianNonKriminal']    = $this->m_model->get_data_where_count('kejadian', array('KATEGORI_KEJADIAN' => "Non Kriminal"));
 

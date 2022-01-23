@@ -60,6 +60,12 @@
                                 <input type="time" name="WAKTU_KEJADIAN" class="form-control" required>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Bukti</label>
+                                <input type="file" name="BUKTI" class="form-control" required>
+                            </div>
+                        </div>
                     </div>
                     <h5>Data Pelapor</h5><hr>
                     <div class="row">

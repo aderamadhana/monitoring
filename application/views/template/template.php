@@ -169,6 +169,12 @@
                 <i class="mdi mdi-book-variant menu-icon"></i>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('Poin/poinAnggota') ?>">
+                <span class="menu-title">Poin</span>
+                <i class="mdi mdi-coin menu-icon"></i>
+              </a>
+            </li>
             <?php }?>
           </ul>
         </nav>

@@ -121,10 +121,16 @@
                 <td style="width: 50%;">Nama Pencatat</td>
                 <td style="width: 50%;"><?= $nip_pencatat['NAMA'] ?></td>
             </tr>
+            <?php
+                if ($nip_validator != null) {
+            ?>
             <tr>
                 <td style="width: 50%;">Nama Validator</td>
                 <td style="width: 50%;"><?= $nip_validator['NAMA'] ?></td>
             </tr>
+            <?php
+                }
+            ?>
             <tr>
                 <td style="width: 50%;">Status Pelapor</td>
                 <td style="width: 50%;"><?= $kejadian['STATUS_KEJADIAN'] ?></td>

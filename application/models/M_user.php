@@ -18,4 +18,9 @@ class M_user extends CI_Model {
         return $this->db->get()->result();
     }
 
+    public function get_user_by_kapolsek($idKapolsek)
+    {
+       return $this->db->query("SELECT * FROM user WHERE user.NIP IN (SELECT anggota_polsek.NIP FROM anggota_polsek WHERE anggota_polsek.ID_POLSEK IN (SELECT anggota_polsek.ID_POLSEK FROM anggota_polsek WHERE anggota_polsek.NIP = '".$idKapolsek."')) AND user.NIP NOT IN('".$idKapolsek."');")->result();
+    }
+
 }

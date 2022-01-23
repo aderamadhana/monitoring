@@ -76,22 +76,44 @@ class DataKejadian extends CI_Controller {
 
         $data = $_POST;
 
-        $this->m_model->insert_data('kejadian', $data);
+        $config = ['upload_path' => './assets/img/kejadian/', 'allowed_types' => 'jpg|png|jpeg', 'max_size' => 2048];            
+        $this->upload->initialize($config);
 
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil tambah data </div>');
+        if($this->upload->do_upload('BUKTI')){ 
+            $dataUpload     = $this->upload->data();
+            $foto           = base_url('assets/img/kejadian/' . $dataUpload['file_name']);
+
+            // array_push($data, ('BUKTI' => $foto));
+            $data["BUKTI"] = $foto;
+
+            $this->m_model->insert_data('kejadian', $data);
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil tambah data </div>');
             
         redirect('DataKejadian');
+        }
     }
 
     public function do_edit_kejadian(){
 
         $data = $_POST;
 
-        $this->m_model->update_data('kejadian', $data, array('ID_KEJADIAN' => $this->input->post('ID_KEJADIAN')));
+        $config = ['upload_path' => './assets/img/kejadian/', 'allowed_types' => 'jpg|png|jpeg', 'max_size' => 2048];            
+        $this->upload->initialize($config);
 
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil update data </div>');
+        if($this->upload->do_upload('BUKTI')){ 
+            $dataUpload     = $this->upload->data();
+            $foto           = base_url('assets/img/kejadian/' . $dataUpload['file_name']);
+
+            // array_push($data, ('BUKTI' => $foto));
+            $data["BUKTI"] = $foto;
+
+            $this->m_model->update_data('kejadian', $data, array('ID_KEJADIAN' => $this->input->post('ID_KEJADIAN')));
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil tambah data </div>');$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil update data </div>');
             
         redirect('DataKejadian');
+        }
     }
 
     public function hapus_kejadian($id_kejadian){

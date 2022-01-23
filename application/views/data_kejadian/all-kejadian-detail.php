@@ -146,6 +146,10 @@
                                 <th>Kategori Kejadian</th>
                                 <td><?= $kejadian['KATEGORI_KEJADIAN'] ?></td>
                             </tr>
+                            <tr>
+                                <th>Bukti</th>
+                                <td><a target="_blank" href="<?= $kejadian['BUKTI'] ?>" class="badge badge-success">Lihat</a></td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -202,7 +206,7 @@
                         </div>
                     </div>
                     <?php 
-                        if ($ $this->session->userdata('role') == '2') {
+                        if ($this->session->userdata('role') == '2') {
                     ?>
                     <div class="row">
                         <div class="col-md-12">

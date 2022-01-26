@@ -191,11 +191,11 @@
                                     <td><?= $kejadian['STATUS_KEJADIAN'] ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Tanggal Validasi</th>
-                                    <td><?= $kejadian['TANGGAL_VALIDASI'] ?></td>
+                                    <th>Tanggal Dicatat</th>
+                                    <td><?= $kejadian['TANGGAL_INPUT_DATA'] ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Tanggal Validasi</th>
+                                    <th>Tanggal Selesai</th>
                                     <td><?= $kejadian['TANGGAL_VALIDASI'] ?></td>
                                 </tr>
                                 <tr>

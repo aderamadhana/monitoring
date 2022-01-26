@@ -32,8 +32,9 @@
                 <th> Alamat Saksi </th>
                 <th> Runtutan Kejadian </th>
                 <th> Kategori Kejadian </th>
-                <th> Status Pelapor </th>
-                <th> Tanggal Validasi </th>
+                <th> Status Kejadian </th>
+                <th> Tanggal Dicatat </th>
+                <th> Tanggal Selesai </th>
                 <th> Cetak </th>
             </tr>
             </thead>
@@ -53,6 +54,7 @@
                     <td><?= $data->KETERANGAN_KEJADIAN?></td>
                     <td><?= $data->KATEGORI_KEJADIAN?></td>
                     <td><?= $data->STATUS_KEJADIAN?></td>
+                    <td><?= $data->TANGGAL_INPUT_DATA?></td>
                     <td><?= $data->TANGGAL_VALIDASI?></td>
                     <td><a class="btn btn-sm btn-primary" title="Cetak Detail Kejadian" href="<?= base_url('Kejadian/print/') . $data->ID_KEJADIAN; ?>"><i class="mdi mdi-printer"></i> </a></td>
                 </tr>

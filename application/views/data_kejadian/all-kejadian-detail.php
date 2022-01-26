@@ -187,7 +187,7 @@
                                         } ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Status Pelapor</th>
+                                    <th>Status Kejadian</th>
                                     <td><?= $kejadian['STATUS_KEJADIAN'] ?></td>
                                 </tr>
                                 <tr>

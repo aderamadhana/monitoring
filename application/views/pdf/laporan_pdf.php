@@ -132,8 +132,12 @@
                 }
             ?>
             <tr>
-                <td style="width: 50%;">Status Pelapor</td>
+                <td style="width: 50%;">Status Kejadian</td>
                 <td style="width: 50%;"><?= $kejadian['STATUS_KEJADIAN'] ?></td>
+            </tr>
+            <tr>
+                <td style="width: 50%;">Tanggal Dicatat</td>
+                <td style="width: 50%;"><?= $kejadian['TANGGAL_INPUT_DATA'] ?></td>
             </tr>
             <tr>
                 <td style="width: 50%;">Tanggal Validasi</td>

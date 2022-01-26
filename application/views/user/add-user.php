@@ -45,10 +45,6 @@
                         <input type="text" name="JABATAN" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" name="USERNAME" class="form-control" required>
-                    </div>
-                    <div class="form-group">
                         <label>Password</label>
                         <input type="password" name="PASSWORD" class="form-control" required>
                     </div>

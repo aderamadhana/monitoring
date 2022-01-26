@@ -16,14 +16,13 @@ class Login extends CI_Controller {
     }
 
     public function aksi_login(){
-        $username 		= $this->input->post('username');
+        $nip 			= $this->input->post('nip');
 		$password 		= $this->input->post('password');
-		$nip			= null;
 		$role			= null;
 		$nama			= null;
 		$jabatan		= null;
 
-		$dataLogin = $this->db->query('SELECT * FROM user WHERE USERNAME = "'.$username.'" && PASSWORD = "'.$password.'"')->result();
+		$dataLogin = $this->db->query('SELECT * FROM user WHERE NIP = "'.$nip.'" && PASSWORD = "'.$password.'"')->result();
 
 		foreach($dataLogin as $data){
 			$nip 		= $data->NIP;
@@ -33,7 +32,6 @@ class Login extends CI_Controller {
 		}
 
 		$data_session = array(
-			'username' 		=> $username,
 			'nip' 			=> $nip,
 			'role' 			=> $role,
 			'nama' 			=> $nama,

@@ -56,7 +56,6 @@ class Anggota extends CI_Controller {
         $tanggal_lahir      = $this->input->post('TANGGAL_LAHIR');
         $alamat             = $this->input->post('ALAMAT');
         $telepon            = $this->input->post('TELEPON');
-        $username           = $this->input->post('USERNAME');
         $jabatan            = $this->input->post('JABATAN');
         $password           = $this->input->post('PASSWORD');
         $id_role            = $this->input->post('ID_ROLE');
@@ -78,7 +77,6 @@ class Anggota extends CI_Controller {
             'ALAMAT'            => $alamat,
             'TELEPON'           => $telepon,
             'JABATAN'           => $jabatan,
-            'USERNAME'          => $username,
             'PASSWORD'          => $password,
             'FOTO'              => $foto,
             'ID_ROLE'           => $id_role
@@ -95,26 +93,20 @@ class Anggota extends CI_Controller {
         );
 
         $get_data_nip       = $this->m_model->get_data_where('user', array('NIP' => $nip));
-        $get_data_username  = $this->m_model->get_data_where('user', array('USERNAME' => $username));
 
         if(count($get_data_nip) == 0){
-            if(count($get_data_username) == 0){
-                $this->m_model->insert_data('user', $data_anggota);
+            $this->m_model->insert_data('user', $data_anggota);
 
-                if($jenis_keanggotaan == 'polsek'){
-                    $this->m_model->insert_data('anggota_polsek', $data_nip_polsek);
-                }else if($jenis_keanggotaan == 'polres'){
-                    $this->m_model->insert_data('anggota_polres', $data_nip_polres);
-                }
-
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil tambah data </div>');
-                
-                redirect('Anggota');
-            }else{
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Username sudah tersedia </div>');
-			
-                redirect('Anggota/tambah_anggota');
+            if($jenis_keanggotaan == 'polsek'){
+                $this->m_model->insert_data('anggota_polsek', $data_nip_polsek);
+            }else if($jenis_keanggotaan == 'polres'){
+                $this->m_model->insert_data('anggota_polres', $data_nip_polres);                
             }
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil tambah data </div>');
+            
+            redirect('Anggota');
+            
         }else{
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> NIP sudah tersedia </div>');
 			
@@ -132,7 +124,6 @@ class Anggota extends CI_Controller {
         $tanggal_lahir      = $this->input->post('TANGGAL_LAHIR');
         $alamat             = $this->input->post('ALAMAT');
         $telepon            = $this->input->post('TELEPON');
-        $username           = $this->input->post('USERNAME');
         $password           = $this->input->post('PASSWORD');
         $jenis_keanggotaan  = $this->input->post('JENIS_KEANGGOTAAN');
         $foto               = null;
@@ -152,20 +143,6 @@ class Anggota extends CI_Controller {
             'ALAMAT'            => $alamat,
             'TELEPON'           => $telepon,
             'JABATAN'           => 'Anggota',
-            'USERNAME'          => $username,
-            'PASSWORD'          => $password,
-            'FOTO'              => $foto,
-            'ID_ROLE'              => 2
-        );
-
-        $data_anggota_2 = array(
-            'NIP'               => $nip,
-            'NAMA'              => $nama,
-            'TEMPAT_LAHIR'      => $tempat_lahir,
-            'TANGGAL_LAHIR'     => $tanggal_lahir,
-            'ALAMAT'            => $alamat,
-            'TELEPON'           => $telepon,
-            'JABATAN'           => 'Anggota',
             'PASSWORD'          => $password,
             'FOTO'              => $foto,
             'ID_ROLE'              => 2
@@ -181,44 +158,17 @@ class Anggota extends CI_Controller {
             'ID_POLRES'         => $penempatan_polres
         );
 
-        $get_data_nip       = $this->m_model->get_data_where('user', array('NIP' => $nip));
-        foreach($get_data_nip as $data_username){
-            $username_lm = $data_username->USERNAME;
+        $this->m_model->update_data('user', $data_anggota, array('NIP' => $nip));
+
+        if($jenis_keanggotaan == 'polsek'){
+            $this->m_model->update_data('anggota_polsek', $data_nip_polsek, array('NIP' => $nip));
+        }else if($jenis_keanggotaan == 'polres'){
+            $this->m_model->update_data('anggota_polres', $data_nip_polres, array('NIP' => $nip));
         }
 
-        if($username_lm == $username){
-            $this->m_model->update_data('user', $data_anggota_2, array('NIP' => $nip));
-
-            if($jenis_keanggotaan == 'polsek'){
-                $this->m_model->update_data('anggota_polsek', $data_nip_polsek, array('NIP' => $nip));
-            }else if($jenis_keanggotaan == 'polres'){
-                $this->m_model->update_data('anggota_polres', $data_nip_polres, array('NIP' => $nip));
-            }
-
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil update data </div>');
-            
-            redirect('Anggota');
-        }else{
-            $get_data_username  = $this->m_model->get_data_where('user', array('USERNAME' => $username));
-
-            if(count($get_data_username) == 0){
-                $this->m_model->update_data('user', $data_anggota, array('NIP' => $nip));
-
-                if($jenis_keanggotaan == 'polsek'){
-                    $this->m_model->update_data('anggota_polsek', $data_nip_polsek, array('NIP' => $nip));
-                }else if($jenis_keanggotaan == 'polres'){
-                    $this->m_model->update_data('anggota_polres', $data_nip_polres, array('NIP' => $nip));
-                }
-
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil update data </div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil update data </div>');
                 
-                redirect('Anggota');
-            }else{
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Username sudah tersedia </div>');
-            
-                redirect('Anggota/tambah_anggota');
-            }
-        }
+        redirect('Anggota');
     }
 
     public function hapus_anggota($nip){

@@ -42,10 +42,6 @@
                         <input type="text" name="TELEPON" class="form-control" value="<?= $data->TELEPON ?>">
                     </div>
                     <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" name="USERNAME" class="form-control" value="<?= $data->USERNAME ?>" required>
-                    </div>
-                    <div class="form-group">
                         <label>Password</label>
                         <input type="password" name="PASSWORD" class="form-control" value="<?= $data->PASSWORD ?>" required>
                     </div>

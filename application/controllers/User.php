@@ -53,7 +53,6 @@ class User extends CI_Controller {
         $alamat             = $this->input->post('ALAMAT');
         $telepon            = $this->input->post('TELEPON');
         $jabatan            = $this->input->post('JABATAN');
-        $username           = $this->input->post('USERNAME');
         $password           = $this->input->post('PASSWORD');
         $role               = $this->input->post('ROLE');
         $jenis_keanggotaan  = $this->input->post('JENIS_KEANGGOTAAN');
@@ -74,26 +73,18 @@ class User extends CI_Controller {
             'ALAMAT'            => $alamat,
             'TELEPON'           => $telepon,
             'JABATAN'           => $jabatan,
-            'USERNAME'          => $username,
             'PASSWORD'          => $password,
             'FOTO'              => $foto,
             'ID_ROLE'           => $role
         );
         $get_data_nip       = $this->m_model->get_data_where('user', array('NIP' => $nip));
-        $get_data_username  = $this->m_model->get_data_where('user', array('USERNAME' => $username));
 
         if(count($get_data_nip) == 0){
-            if(count($get_data_username) == 0){
-                $this->m_model->insert_data('user', $data_user);
+            $this->m_model->insert_data('user', $data_user);
 
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil tambah data </div>');
                 
                 redirect('User');
-            }else{
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Username sudah tersedia </div>');
-			
-                redirect('User/tambah_user');
-            }
         }else{
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> NIP sudah tersedia </div>');
 			
@@ -111,7 +102,6 @@ class User extends CI_Controller {
         $tanggal_lahir      = $this->input->post('TANGGAL_LAHIR');
         $alamat             = $this->input->post('ALAMAT');
         $telepon            = $this->input->post('TELEPON');
-        $username           = $this->input->post('USERNAME');
         $password           = $this->input->post('PASSWORD');
         $jabatan            = $this->input->post('JABATAN');
         $role               = $this->input->post('ROLE');
@@ -130,51 +120,16 @@ class User extends CI_Controller {
             'ALAMAT'            => $alamat,
             'TELEPON'           => $telepon,
             'JABATAN'           => $jabatan,
-            'USERNAME'          => $username,
             'PASSWORD'          => $password,
             'FOTO'              => $foto,
             'ID_ROLE'           => $role
         );
 
-        $data_user_2 = array(
-            'NIP'               => $nip,
-            'NAMA'              => $nama,
-            'TEMPAT_LAHIR'      => $tempat_lahir,
-            'TANGGAL_LAHIR'     => $tanggal_lahir,
-            'ALAMAT'            => $alamat,
-            'TELEPON'           => $telepon,
-            'JABATAN'           => $jabatan,
-            'PASSWORD'          => $password,
-            'FOTO'              => $foto,
-            'ID_ROLE'           => $role
-        );
+        $this->m_model->update_data('user', $data_user, array('NIP' => $nip));
 
-        $get_data_nip       = $this->m_model->get_data_where('user', array('NIP' => $nip));
-        foreach($get_data_nip as $data_username){
-            $username_lm = $data_username->USERNAME;
-        }
-
-        if($username_lm == $username){
-            $this->m_model->update_data('user', $data_user_2, array('NIP' => $nip));
-
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil update data </div>');
-            
-            redirect('User');
-        }else{
-            $get_data_username  = $this->m_model->get_data_where('user', array('USERNAME' => $username));
-
-            if(count($get_data_username) == 0){
-                $this->m_model->update_data('user', $data_user, array('NIP' => $nip));
-
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil update data </div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil update data </div>');
                 
-                redirect('User');
-            }else{
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Username sudah tersedia </div>');
-            
-                redirect('User/tambah_user');
-            }
-        }
+        redirect('User');
     }
 
     public function hapus_user($nip){

@@ -208,6 +208,11 @@
                     <?php 
                         if ($this->session->userdata('role') == '2') {
                     ?>
+                    
+                    <?php
+                        }
+                    ?>
+                <?php } else { ?>
                     <div class="row">
                         <div class="col-md-12">
                             <h4>3. Status Verifikasi</h4>
@@ -223,16 +228,11 @@
                                     <label>Catatan</label>
                                     <textarea class="form-control" name="catatan"></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary" name="validasi">Validasi</button>
-                                <button type="submit" class="btn btn-danger" name="tolak">Tolak</button>
+                                <button type="submit" class="btn btn-primary" name="validasi">Selesai Diproses</button>
+                                <!-- <button type="submit" class="btn btn-danger" name="tolak">Tolak</button> -->
                             </form>
                         </div>
                     </div>
-                    <?php
-                        }
-                    ?>
-                <?php } else { ?>
-                    
                 <?php } ?>
             </div>
         </div>

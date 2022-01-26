@@ -62,7 +62,7 @@
                     <td><?= $data->STATUS_KEJADIAN?></td>
                     <td><?= $data->TANGGAL_VALIDASI?></td>
                     <?php 
-                        if ($data->STATUS_KEJADIAN == 'Belum Tervalidasi') {
+                        if ($data->STATUS_KEJADIAN == 'Sedang Diproses') {
                     ?>
                     <td> 
                         <a href="<?= site_url('DataKejadian/edit_kejadian/'.$data->ID_KEJADIAN); ?>" class="btn btn-sm btn-warning"><i class="mdi mdi-grease-pencil"></i> Edit</a>

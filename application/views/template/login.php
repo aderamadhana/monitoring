@@ -34,7 +34,7 @@
                 <!-- <h6 class="font-weight-light">Sign in to continue.</h6> -->
                 <form class="pt-3" action="<?php echo base_url('Login/aksi_login')?>" method="post">
                   <div class="form-group">
-                    <input type="text" name="username" class="form-control form-control-lg" placeholder="Username">
+                    <input type="text" name="nip" class="form-control form-control-lg" placeholder="NIP">
                   </div>
                   <div class="form-group">
                     <input type="password" name="password" class="form-control form-control-lg" placeholder="Password">

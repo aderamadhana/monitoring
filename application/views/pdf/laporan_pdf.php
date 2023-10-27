@@ -10,7 +10,7 @@
     <hr />
     <p>&nbsp;</p>
     <p>1. Identitas pelapor, pelaku, korban, dan saksi</p>
-    <table style="border-collapse: collapse; width: 100%;" >
+    <table style="border-collapse: collapse; width: 100%;">
         <tbody>
             <tr>
                 <td style="width: 15.4779%;">Data Pelapor</td>
@@ -122,14 +122,14 @@
                 <td style="width: 50%;"><?= $nip_pencatat['NAMA'] ?></td>
             </tr>
             <?php
-                if ($nip_validator != null) {
+            if ($nip_validator != null) {
             ?>
-            <tr>
-                <td style="width: 50%;">Nama Validator</td>
-                <td style="width: 50%;"><?= $nip_validator['NAMA'] ?></td>
-            </tr>
+                <tr>
+                    <td style="width: 50%;">Nama Validator</td>
+                    <td style="width: 50%;"><?= $nip_validator['NAMA'] ?></td>
+                </tr>
             <?php
-                }
+            }
             ?>
             <tr>
                 <td style="width: 50%;">Status Kejadian</td>

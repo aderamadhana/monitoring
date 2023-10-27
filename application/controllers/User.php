@@ -1,14 +1,16 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class User extends CI_Controller
+{
 
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
         date_default_timezone_set('Asia/Jakarta');
         $this->load->model('m_user');
         $this->load->model('m_model');
-        
+
         $this->load->library(array('upload'));
 
         // if($this->session->userdata('role') != 1){
@@ -16,8 +18,9 @@ class User extends CI_Controller {
         //     redirect(base_url("login"));
         // }
     }
-    
-    public function index(){
+
+    public function index()
+    {
         $data['content']            = 'user/all-user';
         $data['title']              = 'User';
         $data['user']               = $this->m_user->get_all_user();
@@ -25,7 +28,8 @@ class User extends CI_Controller {
         $this->load->view('template/template', $data);
     }
 
-    public function tambah_user(){
+    public function tambah_user()
+    {
         $data['content']            = 'user/add-user';
         $data['title']              = 'User';
         $data['role']               = $this->m_user->get_all_role();
@@ -33,7 +37,8 @@ class User extends CI_Controller {
         $this->load->view('template/template', $data);
     }
 
-    public function edit_user($nip){
+    public function edit_user($nip)
+    {
         $data['content']            = 'user/edit-user';
         $data['title']              = 'User';
         $data['user']               = $this->m_model->get_data_where('user', array('nip' => $nip));
@@ -42,8 +47,9 @@ class User extends CI_Controller {
         $this->load->view('template/template', $data);
     }
 
-    public function do_tambah_user(){
-        $config = ['upload_path' => './assets/img/user/', 'allowed_types' => 'jpg|png|jpeg', 'max_size' => 2048];            
+    public function do_tambah_user()
+    {
+        $config = ['upload_path' => './assets/img/user/', 'allowed_types' => 'jpg|png|jpeg', 'max_size' => 2048];
         $this->upload->initialize($config);
 
         $nip                = $this->input->post('NIP');
@@ -60,10 +66,10 @@ class User extends CI_Controller {
         $penempatan_polsek  = $this->input->post('PENEMPATAN_POLSEK');
         $penempatan_polres  = $this->input->post('PENEMPATAN_POLRES');
 
-        if($this->upload->do_upload('FOTO')){ 
-			$dataUpload     = $this->upload->data();
-			$foto    	    = base_url('assets/img/user/' . $dataUpload['file_name']);
-		}
+        if ($this->upload->do_upload('FOTO')) {
+            $dataUpload     = $this->upload->data();
+            $foto            = base_url('assets/img/user/' . $dataUpload['file_name']);
+        }
 
         $data_user = array(
             'NIP'               => $nip,
@@ -79,21 +85,22 @@ class User extends CI_Controller {
         );
         $get_data_nip       = $this->m_model->get_data_where('user', array('NIP' => $nip));
 
-        if(count($get_data_nip) == 0){
+        if (count($get_data_nip) == 0) {
             $this->m_model->insert_data('user', $data_user);
 
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil tambah data </div>');
-                
-                redirect('User');
-        }else{
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil tambah data </div>');
+
+            redirect('User');
+        } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> NIP sudah tersedia </div>');
-			
+
             redirect('User/tambah_user');
         }
     }
 
-    public function do_edit_user(){
-        $config = ['upload_path' => './assets/img/user/', 'allowed_types' => 'jpg|png|jpeg', 'max_size' => 2048];            
+    public function do_edit_user()
+    {
+        $config = ['upload_path' => './assets/img/user/', 'allowed_types' => 'jpg|png|jpeg', 'max_size' => 2048];
         $this->upload->initialize($config);
 
         $nip                = $this->input->post('NIP');
@@ -107,10 +114,10 @@ class User extends CI_Controller {
         $role               = $this->input->post('ROLE');
         $foto               = null;
 
-        if($this->upload->do_upload('FOTO')){ 
-			$dataUpload     = $this->upload->data();
-			$foto    	    = base_url('assets/img/user/' . $dataUpload['file_name']);
-		}
+        if ($this->upload->do_upload('FOTO')) {
+            $dataUpload     = $this->upload->data();
+            $foto            = base_url('assets/img/user/' . $dataUpload['file_name']);
+        }
 
         $data_user = array(
             'NIP'               => $nip,
@@ -128,15 +135,16 @@ class User extends CI_Controller {
         $this->m_model->update_data('user', $data_user, array('NIP' => $nip));
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil update data </div>');
-                
+
         redirect('User');
     }
 
-    public function hapus_user($nip){
+    public function hapus_user($nip)
+    {
         $this->m_model->delete_data('user', array('NIP' => $nip));
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil hapus data </div>');
-                
+
         redirect('User');
     }
 }
